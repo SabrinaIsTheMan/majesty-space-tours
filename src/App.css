@@ -1,3 +1,13 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+
+/* #105bd8 (blue)
+#dd361c (red)
+#f4e6e8 (pale pink)
+#FCFCFC (offwhite)*/

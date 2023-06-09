@@ -1,0 +1,45 @@
+.menu {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.brand {
+    width: 20%;
+}
+
+.brandName {
+    color: #105bd8;
+}
+
+.brandIcon,
+.menu a:hover,
+.menu a:focus,
+.footer a:hover,
+.footer a:focus {
+    color: #dd361c;
+}
+
+
+.menuBar {
+    font-weight: 700;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.menuBar, .menuNav {
+    display: flex;
+    flex-direction: row;
+}
+
+.menuNav {
+    width: 50%;
+    justify-content: space-evenly;
+    text-transform: uppercase;
+}
+
+
+
