@@ -1,0 +1,19 @@
+.about {
+    height: fit-content;
+    margin-bottom: 80px;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    margin: 10px 0;
+}
+
+.profileImg {
+    align-content: stretch;
+}
+
+.profileBlurb {
+    text-align: left;
+}

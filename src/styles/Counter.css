@@ -1,0 +1,14 @@
+.counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10vh;
+}
+
+.counterBubble {
+    width: auto;
+    background-color: #f4e6e8;
+    border-radius: 20px;
+    padding: 2.5px 10px;
+}

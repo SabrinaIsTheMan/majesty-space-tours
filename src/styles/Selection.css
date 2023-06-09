@@ -1,0 +1,13 @@
+.selection {
+    margin: 20px 0;
+    height: auto;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+    align-items: center;
+}
+
