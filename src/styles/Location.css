@@ -1,0 +1,22 @@
+.location {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.locationImg, .locationInfo {
+    width: 50%;
+}
+
+.locationInfo {
+    text-align: left;
+}
+
+.locationInfo button {
+    margin: 10px;
+}
+
+.backButton {
+    background: #f4e6e8;
+    color: black;
+}

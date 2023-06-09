@@ -1,12 +1,13 @@
 import '../styles/Gallery.css';
-import Form from './Form';
+import Selection from './Selection';
+import Location from './Location';
+import Dates from './Dates';
 import Counter from './Counter';
 
 function Gallery() {
     return (
         <div className="gallery">
-            <h2>Select a destination below to take a virtual tour:</h2>
-            <Form />
+            <Dates />
             <Counter />
         </div>
     );
