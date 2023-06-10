@@ -3,9 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
-
-function Location({ props, handleDateClick} ) {
+function Location({ props, handleDateClick } ) {
 
     const { location } = useParams();
 

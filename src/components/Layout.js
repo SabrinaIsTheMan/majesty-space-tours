@@ -1,11 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import Counter from './Counter';
+import { useEffect, useState } from 'react';
 
-function Layout() {
+function Layout( {count} ) {
+
     return (
         <>
             <Outlet />
-            <Counter />
+            <Counter count={count}/>
         </>
     )
 };

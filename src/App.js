@@ -35,12 +35,22 @@ function App() {
 
   const [selectedTour, setSelectedTour] = useState({});
   const [tourDates, setTourDates] = useState([]);
+  const [count, setCount] = useState(3);
+
+  const subtractCount = () => {
+    if (count === 0) {
+      setCount(0);
+    } else {
+      setCount(count - 1);
+    }
+  };
 
   // handles click on tour location, find object in tourArray that matches, and saves object to selectedTours
   const handleTourClick = (event) => {
     const tour = event.target.value;
     let obj = tourArray.find(o => o.locationName == tour);
     setSelectedTour(obj);
+    subtractCount();
   }
 
   // handles click on tour dates, triggers api call for asteroids
@@ -69,8 +79,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
 
-        <Route element={<Layout />}>
-          <Route path="/tours" element={<Selection tourArray={tourArray} handleTourClick={handleTourClick} />}>
+        <Route element={<Layout count={count}/>}>
+          <Route path="/tours" element={<Selection tourArray={tourArray} handleTourClick={handleTourClick} count={count} />}>
             <Route path="*" element={<Error />} />
             <Route path=":location" element={<Location selectedTour={selectedTour} handleDateClick={handleDateClick} />}>
               <Route path="dates" element={<Dates tourDates={tourDates} />} />

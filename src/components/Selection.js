@@ -1,7 +1,7 @@
 import '../styles/Selection.css';
 import { Link } from 'react-router-dom';
 
-function Selection({ tourArray, handleTourClick } ) {
+function Selection({ tourArray, handleTourClick, count } ) {
 
     return (
         <div className="selection">
@@ -14,6 +14,7 @@ function Selection({ tourArray, handleTourClick } ) {
                         <Link to={ `${locationName}` }>
                             <button
                             type="button"
+                            disabled={ count === 0 ? true : false }
                             value={ locationName }
                             onClick={(event) => { handleTourClick(event) } }
                             >{ locationName }</button>
