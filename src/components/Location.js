@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function Location({ props, handleDateClick } ) {
+function Location({ selectedTour, handleDateClick } ) {
 
     const { location } = useParams();
 
@@ -13,7 +13,7 @@ function Location({ props, handleDateClick } ) {
     //     axios({
 
     //         // image api here with useParams
-    //         // setImage
+    //         // setImage(url)
 
     //     })}, [])
 
@@ -22,17 +22,17 @@ function Location({ props, handleDateClick } ) {
         <div className="location wrapper">
             <div className="locationImg">
                 <div className="imgContainer">
-                    <img src={image} alt={props.altText} />
+                    <img src={selectedTour.image} alt={selectedTour.altText} />
                 </div>
             </div>
 
             <div className="locationInfo">
                 <h3>About {location}</h3>
-                <p>{props.description}</p>
+                <p>{selectedTour.description}</p>
 
-                <Link to={`/tours/${location}/dates`}>
+                <Link to="dates">
                     <button type="button"
-                        value={props.locationName}
+                        value={selectedTour.locationName}
                         onClick={(event) => { handleDateClick(event) }}>Tour Dates</button>
                 </Link>
 

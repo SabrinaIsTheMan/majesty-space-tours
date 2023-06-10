@@ -9,7 +9,9 @@ function Menu() {
         <header className="menu">
                 <nav className="menuBar">
                     <div className="brand">
-                        <p className="brandName">YSB Galactic Tours <FontAwesomeIcon icon={faRocket} className="brandIcon"/></p>
+                        <Link to="/">
+                            <p className="brandName">YSB Galactic Tours <FontAwesomeIcon icon={faRocket} className="brandIcon"/></p>
+                        </Link>
                     </div>
 
                     <ul className="menuNav">
