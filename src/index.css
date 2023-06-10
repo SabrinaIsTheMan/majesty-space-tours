@@ -15,12 +15,6 @@ body {
   background-color: #FCFCFC;
 }
 
-button {
-  font-family: 'Maitree', serif;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
 .wrapper{
   width: 95%;
   max-width: 1280px;
@@ -32,6 +26,14 @@ img{
   display: block;
   height: auto;
   border-radius: inherit;
+}
+
+.imgContainer {
+  background: #f4e6e8;
+  width: fit-content;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 10px;
 }
 
 ul, li{
@@ -46,6 +48,11 @@ a{
   cursor: pointer;
   transition: 0.3s;
   font-weight: 700;
+}
+
+a:disabled{
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 button, .button {
@@ -68,12 +75,16 @@ button:focus,
   box-shadow: 0 0.5rem 0.5rem -0.4rem #0a0a0a;
 }
 
-.imgContainer {
-  background: #f4e6e8;
-  width: fit-content;
-  padding: 20px;
-  border-radius: 20px;
-  margin: 10px;
+button:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background: lightgrey;
+}
+
+button, .button {
+  font-family: 'Maitree', serif;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 /* TYPOGRAPHY HERE */
@@ -92,7 +103,6 @@ p {
 }
 
 .counter p,
-.footer p,
-.about .profile .button {
+.footer p {
   font-size: clamp(0.7rem, 0.6579rem + 0.2105vw, 0.8rem);
 }
