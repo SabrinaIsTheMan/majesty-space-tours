@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-function Location(props) {
+
+function Location({ props, handleDateClick} ) {
 
     const { location } = useParams();
 
@@ -31,8 +32,10 @@ function Location(props) {
                 <h3>About {location}</h3>
                 <p>{props.description}</p>
 
-                <Link to={`/tours/:location/dates`}>
-                    <button type="button">Tour Dates</button>
+                <Link to={`/tours/${location}/dates`}>
+                    <button type="button"
+                        value={props.locationName}
+                        onClick={(event) => { handleDateClick(event) }}>Tour Dates</button>
                 </Link>
 
                 <Link to="/tours">

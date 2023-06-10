@@ -11,7 +11,8 @@ import Location from './components/Location';
 import Dates from './components/Dates';
 
 import { Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
 
@@ -33,12 +34,30 @@ function App() {
     }];
 
   const [selectedTour, setSelectedTour] = useState({});
+  const [tourDates, setTourDates] = useState([]);
 
-  // handles click on tour location, find object in tourArray that matches, and saves oject to selectedTours
+  // handles click on tour location, find object in tourArray that matches, and saves object to selectedTours
   const handleTourClick = (event) => {
     const tour = event.target.value;
     let obj = tourArray.find(o => o.locationName == tour);
     setSelectedTour(obj);
+  }
+
+  // handles click on tour dates, triggers api call for asteroids
+  const handleDateClick = () => {
+    // useEffect (() => {
+    // axios({
+    //         url: 'https://api.nasa.gov/neo/rest/v1/feed',
+    //         params: {
+    //             api_key: 'MjjVIPUNTzqep8Nk1KqN4vCoVeEX6Nm8oezDWWqB',
+    //             start_date: ''
+    //         }
+    //     }).then(function (response) {
+    //         console.log(response.data.results)
+    //         const nasaResults = response.data.results;
+    //         console.log(nasaResults);
+    //               setTourDates(nasaResults);
+    //     })}, [])
   }
 
   return (
@@ -48,17 +67,17 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-
         <Route path="/about" element={<About />} />
 
         <Route element={<Layout />}>
           <Route path="/tours" element={<Selection tourArray={tourArray} handleTourClick={handleTourClick} />}>
-            <Route path=":location" element={<Location selectedTour={selectedTour} />}>
-              <Route path="dates" element={<Dates />} />
+            <Route path="*" element={<Error />} />
+            <Route path=":location" element={<Location selectedTour={selectedTour} handleDateClick={handleDateClick} />}>
+              <Route path="dates" element={<Dates tourDates={tourDates} />} />
+              <Route path="*" element={<Error />} />
             </Route>
           </Route>
         </Route>
-
         <Route path="*" element={<Error />} />
       </Routes>
 

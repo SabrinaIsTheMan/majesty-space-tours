@@ -1,25 +1,7 @@
 import '../styles/Dates.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 
-function Dates() {
-
-    const [dates, setDates] = useState({});
-
-    // useEffect(() => {
-    //     axios({
-    //     //     url: 'https://api.nasa.gov/neo/rest/v1/feed',
-    //     //     params: {
-    //     //         api_key: 'MjjVIPUNTzqep8Nk1KqN4vCoVeEX6Nm8oezDWWqB',
-    //     //         start_date: ''
-    //     //     }
-    //     // }).then(function (response) {
-    //     //     console.log(response.data.results)
-    //     //     const nasaResults = response.data.results;
-    //     //     console.log(nasaResults);
-    //     // })
-    //     })}, [setDates]);
+function Dates( {tourDates} ) {
 
     return (
         <div className="dates">
@@ -30,7 +12,7 @@ function Dates() {
 
             <ul className="options">
 
-                {dates.map(({ date }) =>
+                {tourDates.map(({ date }) =>
                 <li key={date}>
                     <button value={ date }>{ date }</button>
                 </li>
