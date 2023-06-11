@@ -1,6 +1,5 @@
 import '../styles/Dates.css';
 
-
 function Dates( {tourDates} ) {
 
     return (

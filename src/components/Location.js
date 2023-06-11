@@ -1,7 +1,7 @@
 import '../styles/Location.css';
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 function Location({ selectedTour, handleDateClick } ) {
 
@@ -22,7 +22,7 @@ function Location({ selectedTour, handleDateClick } ) {
         <div className="location wrapper">
             <div className="locationImg">
                 <div className="imgContainer">
-                    <img src={selectedTour.image} alt={selectedTour.altText} />
+                    <img src={image} alt={selectedTour.altText} />
                 </div>
             </div>
 

@@ -12,7 +12,7 @@ import Dates from './components/Dates';
 
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 function App() {
 
@@ -48,7 +48,7 @@ function App() {
   // handles click on tour location, find object in tourArray that matches, and saves object to selectedTours
   const handleTourClick = (event) => {
     const tour = event.target.value;
-    let obj = tourArray.find(o => o.locationName == tour);
+    let obj = tourArray.find(o => o.locationName === tour);
     setSelectedTour(obj);
     subtractCount();
   }
@@ -62,6 +62,7 @@ function App() {
     //         // setTourDates(array of dates here)
 
     //     })}, [])
+    console.log("date click");
   }
 
   return (
