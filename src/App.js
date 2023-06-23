@@ -18,17 +18,22 @@ function App() {
 
   const tourArray = [
     {
-      locationName: 'Mars',
+      locationName: 'Gale Crater',
       altText: 'image of Mars tour',
       description: 'description of Mars tour'
     },
     {
-      locationName: 'Mercury',
+      locationName: 'Gusev Crater',
       altText: 'image of Mercury tour',
       description: 'description of Mercury tour'
     },
     {
-      locationName: 'Moon',
+      locationName: 'Jezero Crater',
+      altText: 'image of Moon tour',
+      description: 'description of Moon tour'
+    },
+    {
+      locationName: 'Meridiani Planum',
       altText: 'image of Moon tour',
       description: 'description of Moon tour'
     }];
