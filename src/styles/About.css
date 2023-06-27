@@ -1,19 +1,29 @@
 .about {
-    height: fit-content;
-    margin-bottom: 80px;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile {
+    width: 20vw;
+    height: auto;
     display: flex;
-    justify-content: space-evenly;
-    gap: 20px;
-    margin: 10px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.profileImg {
-    align-content: stretch;
+.profile .imgContainer {
+    border-radius: 50%;
 }
 
-.profileBlurb {
-    text-align: left;
+.profileGrid {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile .button {
+    width: 15vw;
 }
