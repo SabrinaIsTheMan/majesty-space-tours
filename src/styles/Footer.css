@@ -1,6 +1,6 @@
 .footer {
     background-color: #105bd8;
-    height: 5vh;
+    height: fit-content;
     position: fixed;
     right: 0;
     bottom: 0;
