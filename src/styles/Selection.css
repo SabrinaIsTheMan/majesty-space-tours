@@ -8,6 +8,10 @@
     width: 100vw;
 }
 
+h2 {
+    padding-top: 60px;
+}
+
 .options {
     display: flex;
     flex-direction: column;
@@ -25,4 +29,49 @@ button:disabled {
     cursor: not-allowed;
     background: lightgrey;
 }
+
+/* MediaQueries.css */
+/* Small devices (portrait phones) */
+@media (max-width: 576px) {
+    .selection {
+        margin: 10px 0;
+        height: 40vh;
+    }
+
+    .options {
+        margin: 10px 0;
+    }
+
+    .options button {
+        width: 80vw;
+    }
+
+    h2 {
+        margin: 40px;
+    }
+}
+
+/* Medium devices (landscape phones, tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+    .selection {
+        margin: 15px 0;
+        height: 45vh;
+    }
+
+    .options {
+        margin: 15px 0;
+    }
+
+    .options button {
+        width: 60vw;
+    }
+}
+
+button:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background: lightgrey;
+}
+
+
 

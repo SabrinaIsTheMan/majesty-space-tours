@@ -29,3 +29,57 @@
 .img2 {
     align-self: flex-end;
 }
+
+/* Media Queries */
+/* Small devices (portrait phones) */
+@media (max-width: 576px) {
+    .home {
+        flex-direction: column;
+    }
+
+    .homeLeft,
+    .homeRight {
+        width: 100%;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .homeLeft {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .homeRight {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img1,
+    .img2 {
+        align-self: center;
+    }
+}
+
+/* Medium devices (landscape phones, tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+    .homeLeft,
+    .homeRight {
+        width: 50%;
+    }
+
+    .homeLeft {
+        margin-right: 20px;
+    }
+
+    .img1 {
+        align-self: left;
+    }
+
+    .img2 {
+        align-self: flex-end;
+    }
+}
