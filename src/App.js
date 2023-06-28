@@ -98,7 +98,7 @@ function App() {
 
         setTourDates(filteredDatesArray);
       });
-    }, []);
+    }, []); //we want this to be called when the app is mounted (console will give a warning and want us to put currentDate here but that doesn't make sense)
 
   return (
     <div className="App">

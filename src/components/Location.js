@@ -81,29 +81,26 @@ function Location({ selectedTour } ) {
     }, [location])
 
     return (
-
-        <div className="location wrapper">
-            <div className="locationImg">
-                <div className="imgContainer">
-                    <img src={image} alt={selectedTour.altText} />
-                </div>
+        <section className="location">
+          <div className="wrapper">
+            <div className="imgContainer">
+              <img src={image} alt={selectedTour.altText} />
             </div>
 
             <div className="locationInfo">
-                <h3>About {location}</h3>
-                <p>{selectedTour.description}</p>
+              <h3>About {location}</h3>
+              <p>{selectedTour.description}</p>
 
-                <Link to="dates">
-                    <button type="button"
-                        value={selectedTour.locationName}
-                    >Tour Dates</button>
-                </Link>
+              <Link to="dates">
+                <button type="button" value="Tour Dates">Tour Dates</button>
+              </Link>
 
-                <Link to="/tours">
-                    <button type="button" className='backButton'>Back</button>
-                </Link>
+              <Link to="/tours">
+                <button type="button" className='backButton'>Back</button>
+              </Link>
             </div>
-        </div>
+          </div>
+        </section>
     );
 }
 

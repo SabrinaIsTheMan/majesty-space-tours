@@ -1,8 +1,14 @@
 .dates {
-    width: 40vw;
-    height: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.dateOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+    align-items: center;
 }
