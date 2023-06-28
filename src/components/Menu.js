@@ -10,7 +10,7 @@ function Menu() {
                 <nav className="menuBar">
                     <div className="brand">
                         <Link to="/">
-                            <p className="brandName">YSB Galactic Tours <FontAwesomeIcon icon={faRocket} className="brandIcon"/></p>
+                            <p className="brandName">YBS Galactic Tours <FontAwesomeIcon icon={faRocket} className="brandIcon"/></p>
                         </Link>
                     </div>
 

@@ -5,7 +5,7 @@ function Home() {
     return (
         <div className="home wrapper">
             <div className="homeLeft">
-                <h1>Discover the Majesty of Space</h1>
+                <h1>Discover the Majesty of Mars</h1>
                 <h3>Indulge in Opulent Extraterrestrial Experiences</h3>
                 <Link to="/tours">
                     <button>Book A Tour</button>
