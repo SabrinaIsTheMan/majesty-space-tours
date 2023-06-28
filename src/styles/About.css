@@ -1,5 +1,6 @@
 .about {
-    height: 70vh;
+    width: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,48 +10,50 @@
 .profile {
     width: 20vw;
     height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 80% 20%;
+    place-content: center;
+    place-items: center;
+    margin: 20px;
+}
+
+.profile .imgContainer {
+    border-radius: 50%;
 }
 
 .profileGrid {
-    display: flex;
-    flex-direction: row;
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: 100%;
+    place-content: center;
+    place-items: center;
+    gap: 20px;
 }
 
 .profile .button {
-    width: 15vw;
+    width: 90%;
+    margin: 0;
+    padding: 20px;
 }
 
-@media (max-width: 576px) {
-    .about {
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
 
+@media (max-width: 1000px) {
     .profile {
-        width: 80vw;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
+        width: 300px;
     }
 
     .profileGrid {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
     }
+}
 
-    .profile .button {
-        width: 80vw;
+
+@media (max-width: 768px) {
+    .profileGrid {
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(4, 25%);
     }
 }
