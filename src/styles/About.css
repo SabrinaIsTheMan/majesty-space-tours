@@ -15,10 +15,6 @@
     justify-content: center;
 }
 
-.profile .imgContainer {
-    border-radius: 50%;
-}
-
 .profileGrid {
     display: flex;
     flex-direction: row;
@@ -26,4 +22,35 @@
 
 .profile .button {
     width: 15vw;
+}
+
+@media (max-width: 576px) {
+    .about {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .profile {
+        width: 80vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .profileGrid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .profile .button {
+        width: 80vw;
+    }
 }

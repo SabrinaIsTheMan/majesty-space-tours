@@ -4,15 +4,97 @@
     align-items: center;
     width: 100vw;
     height: 50vh;
+    margin-top: 40px;
 }
 
 
-.locationImg, .locationInfo {
-    width: 50%;
+.locationImg {
+    width: 30%;
 }
 
 .locationInfo {
     text-align: left;
+    width: 50%;
+}
+
+.locationInfo button {
+    margin: 10px;
+}
+
+.backButton {
+    background: #f4e6e8;
+    color: black;
+}
+
+/* MediaQueries.css */
+
+/* Small devices (portrait phones) */
+@media (max-width: 576px) {
+    .location {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 50vh;
+        margin-top: 20px;
+    }
+
+    .locationImg {
+        width: 60%;
+    }
+
+    .locationInfo {
+        text-align: center;
+        width: 80%;
+    }
+
+    .locationInfo button {
+        margin: 5px;
+    }
+}
+
+/* Medium devices (landscape phones, tablets) */
+@media (min-width: 577px) and (max-width: 992px) {
+    .location {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100vw;
+        height: 50vh;
+        margin-top: 30px;
+    }
+
+    .locationImg {
+        width: 40%;
+    }
+
+    .locationInfo {
+        text-align: left;
+        width: 60%;
+    }
+
+    .locationInfo button {
+        margin: 10px;
+    }
+}
+
+.location {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    height: 50vh;
+    margin-top: 50px;
+}
+
+.locationImg {
+    width: 30%;
+}
+
+.locationInfo {
+    text-align: left;
+    width: 50%;
 }
 
 .locationInfo button {
