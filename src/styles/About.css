@@ -22,6 +22,8 @@
 
 .profile .imgContainer {
     border-radius: 50%;
+    height: 15vw;
+    width: 15vw;
 }
 
 .profileGrid {
@@ -44,6 +46,11 @@
 @media (max-width: 1000px) {
     .profile {
         width: 300px;
+    }
+
+    .profile .imgContainer {
+        height: 250px;
+        width: 250px;
     }
 
     .profileGrid {

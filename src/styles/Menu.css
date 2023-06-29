@@ -1,6 +1,6 @@
 .menu {
     width: 100vw;
-    height: 10vh;
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,6 +77,7 @@
 
     .hamburger {
         display: block;
+        z-index: 30;
     }
 
     .hamburger.active .bar:nth-child(2) {
@@ -105,7 +106,7 @@
     .menuNav {
         position: fixed;
         left: -100%;
-        top: 80px;
+        top: 0;
         gap: 0;
         background-color: #f4e6e8;
         width: 100%;
@@ -115,9 +116,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 20;
     }
 
-    .menuNav.active {
+    .menuNav.active{
         left: 0;
     }
 }
+
+/* how to disable scroll when hamburger menu is open
+    https://stackoverflow.com/questions/39962757/prevent-scrolling-using-css-on-react-rendered-components */
