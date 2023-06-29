@@ -20,6 +20,7 @@ function App() {
 
   const toggleMenu = () => {
     setActive(!active);
+    document.body.style.overflowY = `${active ? "" : "hidden" }`;
   };
 
   const tourArray = [
@@ -108,23 +109,22 @@ function App() {
 
   return (
     <div className="App">
-      <div className={`scrollContainer ${active ? "noScroll" : ""}`} >
-        <Menu toggleMenu ={toggleMenu} active={active}/>
+      <Menu toggleMenu ={toggleMenu} active={active}/>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="about" element={<About />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<About />} />
 
-          <Route element={<Layout count={count} />}>
-            <Route path="/tours" element={<Selection tourArray={tourArray} handleTourClick={handleTourClick} count={count} />} />
-            <Route path="/tours/:location" element={<Location selectedTour={selectedTour} />} />
-            <Route path="/tours/:location/dates" element={<Dates tourDates={tourDates} />} />
-          </Route>
-          <Route path="*" element={<Error />} />
-        </Routes>
+        <Route element={<Layout count={count} />}>
+          <Route path="/tours" element={<Selection tourArray={tourArray} handleTourClick={handleTourClick} count={count} />} />
+          <Route path="/tours/:location" element={<Location selectedTour={selectedTour} />} />
+          <Route path="/tours/:location/dates" element={<Dates tourDates={tourDates} />} />
+        </Route>
 
-        <Footer />
-      </div>
+        <Route path="*" element={<Error />} />
+      </Routes>
+
+      <Footer />
     </div>
   );
 }
