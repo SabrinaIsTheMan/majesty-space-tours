@@ -20,7 +20,7 @@ function App() {
 
   const toggleMenu = () => {
     setActive(!active);
-    document.body.style.overflowY = `${active ? "" : "hidden" }`;
+    document.body.style.overflow = `${active ? "" : "hidden" }`;
   };
 
   const tourArray = [
