@@ -2,15 +2,8 @@ import '../styles/Menu.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRocket } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
-function Menu() {
-
-    const [isActive, setIsActive] = useState(false);
-
-    const toggleMenu = () => {
-        setIsActive(!isActive);
-    };
+function Menu({toggleMenu, active}) {
 
     return (
         <header className="menu">
@@ -20,7 +13,7 @@ function Menu() {
                         <p className="brandName">YBS Galactic Tours <FontAwesomeIcon icon={faRocket} className="brandIcon"/></p>
                     </Link>
                 </div>
-                <div className={`menuNav ${isActive ? "active" : ""}`}>
+                <div className={`menuNav ${active ? "active" : ""}`}>
                     <ul className="navList">
                         <li className="navItem" onClick={toggleMenu}><Link to="/"><p>Home</p></Link></li>
                         <li className="navItem" onClick={toggleMenu}><Link to="/tours"><p>Book A Tour</p></Link></li>
@@ -28,7 +21,7 @@ function Menu() {
                     </ul>
                 </div>
                 <div
-                className={`hamburger ${isActive ? "active" : ""}`}
+                className={`hamburger ${active ? "active" : ""}`}
                 onClick={toggleMenu}>
                     <span className="bar"></span>
                     <span className="bar"></span>
