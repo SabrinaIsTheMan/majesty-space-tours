@@ -17,6 +17,7 @@ function Menu({toggleMenu, active}) {
                     <ul className="navList">
                         <li className="navItem" onClick={toggleMenu}><Link to="/"><p>Home</p></Link></li>
                         <li className="navItem" onClick={toggleMenu}><Link to="/tours"><p>Book A Tour</p></Link></li>
+                        <li className="navItem" onClick={toggleMenu}><Link to="/search"><p>Search Tours</p></Link></li>
                         <li className="navItem" onClick={toggleMenu}><Link to="/about"><p>About Us</p></Link></li>
                     </ul>
                 </div>

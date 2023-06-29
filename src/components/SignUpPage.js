@@ -1,6 +1,6 @@
 import firebase from '../firebase';
-import { getDatabase, ref, onValue, push } from 'firebase/database';
-import { useState, useEffect } from 'react';
+import { getDatabase, ref, push } from 'firebase/database';
+import { useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import { Link } from 'react-router-dom';
@@ -10,37 +10,17 @@ function SignUpPage({ tourDate, location }) {
     const [open, setOpen] = useState(false);
 
     const onOpenModal = () => setOpen(true);
-    const onCloseModal = () => setOpen(false);
-
-    const [passengers, setPassengers] = useState([]);
-    const [userInput, setUserInput] = useState({
+;
+    const [bookingInfo, setBookingInfo] = useState({
         name: "",
-        tour: "",
-        date: ""
+        tour: location,
+        date: tourDate
     });
-
-    useEffect(() => {
-        const database = getDatabase(firebase);
-
-        const dbRef = ref(database);
-
-        onValue(dbRef, (response) => {
-
-            const newState = [];
-            const data = response.val();
-
-            for (let key in data) {
-                newState.push(data[key]);
-            }
-
-            setPassengers(newState);
-        })
-    }, []);
 
     const handleChange = (e) => {
 
-        setUserInput({
-            ...userInput, //spreading existing state back into new state value
+        setBookingInfo({
+            ...bookingInfo, //spreading existing state back into new state value
             [e.target.name]: e.target.value
         });
     }
@@ -52,12 +32,12 @@ function SignUpPage({ tourDate, location }) {
         const database = getDatabase(firebase);
         const dbRef = ref(database);
 
-        push(dbRef, userInput);
+        push(dbRef, bookingInfo);
 
-        setUserInput({
+        setBookingInfo({
             name: "",
-            tour: { location },
-            date: { tourDate }
+            tour: location,
+            date: tourDate
         });
     }
 
@@ -68,10 +48,11 @@ function SignUpPage({ tourDate, location }) {
 
     const onClose = () => {
         window.location = '/';
+        setOpen(false);
     }
 
     return (
-        <div className="signUpPage">
+        <section className="signUpPage">
             <div className="wrapper">
                 <h2>Book Your Tour to {location} on {tourDate}</h2>
 
@@ -82,19 +63,21 @@ function SignUpPage({ tourDate, location }) {
                         id="newName"
                         name="name"
                         onChange={handleChange}
-                        value={userInput.name}
+                        value={bookingInfo.name}
                     />
 
                     <button onClick={onClick} >Book Tour</button>
-                    <Modal open={open} onClose={onClose} center>
-                        <h3>Your tour to {location} on {tourDate} has been booked!</h3>
-                        <Link to="/">
-                            <button>Return to the Homepage</button>
-                        </Link>
-                    </Modal>
                 </form>
+
+                <Modal open={open} onClose={onClose} center>
+                    <h3>Your tour to {location} on {tourDate} has been booked!</h3>
+                    <Link to="/">
+                        <button>Return to the Homepage</button>
+                    </Link>
+                </Modal>
+
             </div>
-        </div>
+        </section>
     );
 }
 

@@ -11,6 +11,7 @@ import Location from './components/Location';
 import Dates from './components/Dates';
 
 import SignUpPage from './components/SignUpPage';
+import SearchPage from './components/SearchPage';
 
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -51,7 +52,6 @@ function App() {
   const [tourDates, setTourDates] = useState([]);
   const [count, setCount] = useState(3);
   const [selectedDate, setSelectedDate] = useState("");
-  const [counterDisplay, setCounterDisplay] = useState(true);
 
   const date = new Date();
   const currentYear = date.getFullYear();
@@ -79,7 +79,6 @@ function App() {
   const handleDateClick = (event) => {
     const tourDate = event.target.value;
     setSelectedDate(tourDate);
-    setCounterDisplay(false);
   }
 
   // handles click on tour dates, triggers api call for asteroids
@@ -125,7 +124,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
 
-        <Route element={<Layout count={count} counterDisplay={counterDisplay} />}>
+        <Route element={<Layout count={count} />}>
           <Route path="/tours" element={<Selection tourArray={tourArray} handleTourClick={handleTourClick} count={count} />} />
 
           <Route path="/tours/:location" element={<Location selectedTour={selectedTour} />} />
@@ -134,6 +133,8 @@ function App() {
         </Route>
 
         <Route path="/tours/:location/dates/:date" element={<SignUpPage location={selectedTour.locationName} tourDate={selectedDate}  />} />
+
+        <Route path="/search" element={<SearchPage />} />
 
         <Route path="*" element={<Error />} />
       </Routes>

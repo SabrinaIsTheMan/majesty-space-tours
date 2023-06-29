@@ -2,12 +2,12 @@ import { Outlet } from 'react-router-dom';
 import Counter from './Counter';
 
 
-function Layout( {count, counterDisplay} ) {
+function Layout({ count }) {
 
     return (
         <div className="layout">
             <Outlet />
-            <Counter count={count} counterDisplay={counterDisplay} />
+            <Counter count={count} />
         </div>
     )
 };
