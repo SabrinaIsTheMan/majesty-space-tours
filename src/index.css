@@ -9,23 +9,10 @@ html {
 
 .sr-only {position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
-#App
-
 body {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.scrollContainer {
   margin: 0 auto;
   font-family: 'Maitree', serif;
   background-color: #FCFCFC;
-  overflow: scroll;
-}
-
-.scrollContainer .noScroll {
-  overflow-y: hidden;
 }
 
 .wrapper{
