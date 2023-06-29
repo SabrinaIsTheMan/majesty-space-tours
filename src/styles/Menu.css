@@ -4,15 +4,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
 }
 
 .brand {
-    width: 20%;
+    width: 40vw;
+
 }
 
 .brandName {
     color: #105bd8;
+    font-size: 1.25rem;
 }
 
 .brandIcon,
@@ -23,23 +24,100 @@
     color: #dd361c;
 }
 
+.menuBar, .menuNav, .navList {
+    display: flex;
+    flex-direction: row;
+}
 
 .menuBar {
     font-weight: 700;
     width: 100%;
     justify-content: space-between;
-}
-
-.menuBar, .menuNav {
-    display: flex;
-    flex-direction: row;
+    align-items: center;
 }
 
 .menuNav {
-    width: 50%;
-    justify-content: space-evenly;
+    width: 60vw;
+}
+
+.navList {
+    width: 90%;
+    justify-content: right;
+    gap: 40px;
     text-transform: uppercase;
 }
 
+.hamburger, .bar {
+    display: none;
+}
 
+@media(max-width:768px) {
 
+    .menuBar{
+        padding: 0 30px;
+    }
+
+    .brand{
+        width: 100%;
+    }
+
+    .brandName{
+        text-align: left;
+    }
+
+    .bar {
+        display: block;
+        width: 40px;
+        height: 5px;
+        margin: 5px auto;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        background-color: #105bd8;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(5px) rotate(-45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-15px) rotate(45deg);
+    }
+
+    .navList {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .navList li p{
+        font-size: 125%;
+    }
+
+    .menuNav {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        gap: 0;
+        background-color: #f4e6e8;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: 0.5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menuNav.active {
+        left: 0;
+    }
+}
