@@ -8,12 +8,6 @@ function SearchPage() {
 
     const [open, setOpen] = useState(false);
 
-    const onOpenModal = () => setOpen(true);
-    const onCloseModal = () => {
-        setOpen(false);
-        setSearchName("");
-    }
-
     const [searchName, setSearchName] = useState("");
 
     const [passengers, setPassengers] = useState([]);
@@ -44,17 +38,24 @@ function SearchPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(passengers);
-
         const result = passengers.find(passengers => passengers.name === searchName);
 
         setSearchResult(result);
     }
 
+    const onOpenModal = () => {
+        setOpen(true);
+    }
+
+    const onCloseModal = () => {
+        setOpen(false);
+        setSearchName("");
+    }
+
     const onClick = (e) => {
         handleSubmit(e);
         onOpenModal(e);
-        }
+    }
 
     return (
         <section className="searchPage">
@@ -65,8 +66,9 @@ function SearchPage() {
                 <form action="submit">
                     <div className="formBar">
                         <label htmlFor="newName">Name: </label>
-                        <input
+                        <input required
                             type="text"
+                            placeholder="Type your name..."
                             id="newName"
                             name="name"
                             onChange={handleChange}
