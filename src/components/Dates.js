@@ -1,6 +1,7 @@
 import '../styles/Dates.css';
+import { Link } from 'react-router-dom';
 
-function Dates( {tourDates} ) {
+function Dates({ tourDates, handleDateClick } ) {
 
     return (
         <section className="dates">
@@ -13,7 +14,10 @@ function Dates( {tourDates} ) {
                 : <ul className="dateOptions">
                     {tourDates.map((date) =>
                     <li key={date}>
-                        <button value={date}>{date}</button>
+                        <Link to={date}>
+                        <button value={date}
+                        onClick={handleDateClick}>{date}</button>
+                        </Link>
                     </li>
                     )}
                 </ul>

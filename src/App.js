@@ -10,6 +10,9 @@ import Selection from './components/Selection';
 import Location from './components/Location';
 import Dates from './components/Dates';
 
+import SignUpPage from './components/SignUpPage';
+import SearchPage from './components/SearchPage';
+
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -48,6 +51,7 @@ function App() {
   const [selectedTour, setSelectedTour] = useState({});
   const [tourDates, setTourDates] = useState([]);
   const [count, setCount] = useState(3);
+  const [selectedDate, setSelectedDate] = useState("");
 
   const date = new Date();
   const currentYear = date.getFullYear();
@@ -70,6 +74,11 @@ function App() {
     let obj = tourArray.find(o => o.locationName === tour);
     setSelectedTour(obj);
     subtractCount();
+  }
+
+  const handleDateClick = (event) => {
+    const tourDate = event.target.value;
+    setSelectedDate(tourDate);
   }
 
   // handles click on tour dates, triggers api call for asteroids
@@ -117,9 +126,15 @@ function App() {
 
         <Route element={<Layout count={count} />}>
           <Route path="/tours" element={<Selection tourArray={tourArray} handleTourClick={handleTourClick} count={count} />} />
+
           <Route path="/tours/:location" element={<Location selectedTour={selectedTour} />} />
-          <Route path="/tours/:location/dates" element={<Dates tourDates={tourDates} />} />
+
+          <Route path="/tours/:location/dates" element={<Dates tourDates={tourDates} handleDateClick={handleDateClick} />} />
         </Route>
+
+        <Route path="/tours/:location/dates/:date" element={<SignUpPage location={selectedTour.locationName} tourDate={selectedDate}  />} />
+
+        <Route path="/search" element={<SearchPage />} />
 
         <Route path="*" element={<Error />} />
       </Routes>

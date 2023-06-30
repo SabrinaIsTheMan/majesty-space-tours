@@ -1,6 +1,6 @@
 import '../styles/Counter.css';
 
-function Counter({count}) {
+function Counter({ count }) {
 
     return (
         <div className="counter wrapper">
