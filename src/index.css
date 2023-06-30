@@ -107,6 +107,39 @@ button, .button {
   padding-bottom: 40px;
 }
 
+form {
+  font-family: 'Maitree', serif;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+input[type=text] {
+  font-family: 'Maitree', serif;
+  padding: 10px;
+}
+
+.signUpPage, .searchPage {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+    align-items: center;
+}
+
+.customModal {
+  border-radius: 20px;
+  width: 85vw;
+  height: auto;
+}
+
+.modalContent {
+  padding: 20px;
+  text-align: center;
+}
+
 /* TYPOGRAPHY HERE */
 
 h1 {
@@ -123,8 +156,12 @@ h3 {
   font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
 }
 
-p {
+p, .modalContent button {
   font-size: clamp(0.7rem, 0.5737rem + 0.6316vw, 1rem);
+}
+
+.modalContent p{
+  font-size: 1rem;
 }
 
 .counter p,
