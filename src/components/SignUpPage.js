@@ -9,8 +9,6 @@ function SignUpPage({ tourDate, location }) {
 
     const [open, setOpen] = useState(false);
 
-    const onOpenModal = () => setOpen(true);
-;
     const [bookingInfo, setBookingInfo] = useState({
         name: "",
         tour: location,
@@ -33,6 +31,12 @@ function SignUpPage({ tourDate, location }) {
         const dbRef = ref(database);
 
         push(dbRef, bookingInfo);
+    }
+
+    const onOpenModal = () => setOpen(true);
+
+    const onCloseModal = () => {
+        setOpen(false);
 
         setBookingInfo({
             name: "",
@@ -42,13 +46,12 @@ function SignUpPage({ tourDate, location }) {
     }
 
     const onClick = (e) => {
+        if (bookingInfo.name === "") {
+            onOpenModal(e);
+        } else {
         handleSubmit(e);
         onOpenModal(e);
-    }
-
-    const onClose = () => {
-        window.location = '/';
-        setOpen(false);
+        }
     }
 
     return (
@@ -61,6 +64,8 @@ function SignUpPage({ tourDate, location }) {
                         <label htmlFor="newName">Name: </label>
                         <input
                             type="text"
+                            required
+                            placeholder="Type your name..."
                             id="newName"
                             name="name"
                             onChange={handleChange}
@@ -70,12 +75,15 @@ function SignUpPage({ tourDate, location }) {
                     <button onClick={onClick}>Book Tour</button>
                 </form>
 
-                <Modal open={open} onClose={onClose} center>
+                <Modal open={open} onClose={onCloseModal} center>
                     <div className="modalContent">
-                        <p>Your tour to the {location} on {tourDate} has been booked!</p>
+                        {bookingInfo.name === "" ? <p>Please input your name!</p>
+                        : <p>Your tour to the {location} on {tourDate} has been booked!</p>
+                        }
                         <Link to="/">
                             <button>Return to Homepage</button>
                         </Link>
+
                     </div>
                 </Modal>
 
