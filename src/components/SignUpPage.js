@@ -77,7 +77,9 @@ function SignUpPage({ tourDate, location }) {
 
                 <Modal open={open} onClose={onCloseModal} center>
                     <div className="modalContent">
-                        {bookingInfo.name === "" ? <p>Please input your name!</p>
+                        {
+                        bookingInfo.name === ""
+                        ? <p>Please input your name!</p>
                         : <p>Your tour to the {location} on {tourDate} has been booked!</p>
                         }
                         <Link to="/">

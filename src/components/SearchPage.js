@@ -11,6 +11,7 @@ function SearchPage() {
     const [searchName, setSearchName] = useState("");
 
     const [passengers, setPassengers] = useState([]);
+    const [otherPassengers, setOtherPassengers] = useState([]);
     const [searchResult, setSearchResult] = useState({});
 
     useEffect (() => {
@@ -38,9 +39,13 @@ function SearchPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const result = passengers.find(passengers => passengers.name === searchName);
+        const resultObject = passengers.find(passengers => passengers.name === searchName); //.find looks gives you the first result and that's it
 
-        setSearchResult(result);
+        setSearchResult(resultObject);
+
+        const resultArray = passengers.filter(passengers => passengers.tour === resultObject.tour && passengers.date === resultObject.date);
+
+        setOtherPassengers(resultArray);
     }
 
     const onOpenModal = () => {
@@ -61,7 +66,7 @@ function SearchPage() {
         <section className="searchPage">
             <div className="wrapper">
                 <h2>Search For Your Tour</h2>
-                <h3>Forgot which tour you booked? Use the form below!</h3>
+                <h4>Forgot which tour you booked? Use the form below!</h4>
 
                 <form action="submit">
                     <div className="formBar">
@@ -83,7 +88,7 @@ function SearchPage() {
                         {
                         !searchResult ? <p>{searchName} has not booked a tour!</p>
                         : searchName === "" ? <p>Please input your name!</p>
-                        : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}!</p>
+                        : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}! There are a total of {otherPassengers.length} passenger(s) on this tour!</p>
                         }
                     </div>
                 </Modal>
