@@ -57,23 +57,26 @@ function SignUpPage({ tourDate, location }) {
                 <h2>Book Your Tour to {location} on {tourDate}</h2>
 
                 <form action="submit">
-                    <label htmlFor="newName">Name: </label>
-                    <input
-                        type="text"
-                        id="newName"
-                        name="name"
-                        onChange={handleChange}
-                        value={bookingInfo.name}
-                    />
-
-                    <button onClick={onClick} >Book Tour</button>
+                    <div className="formBar">
+                        <label htmlFor="newName">Name: </label>
+                        <input
+                            type="text"
+                            id="newName"
+                            name="name"
+                            onChange={handleChange}
+                            value={bookingInfo.name}
+                        />
+                    </div>
+                    <button onClick={onClick}>Book Tour</button>
                 </form>
 
                 <Modal open={open} onClose={onClose} center>
-                    <h3>Your tour to {location} on {tourDate} has been booked!</h3>
-                    <Link to="/">
-                        <button>Return to the Homepage</button>
-                    </Link>
+                    <div className="modalContent">
+                        <p>Your tour to the {location} on {tourDate} has been booked!</p>
+                        <Link to="/">
+                            <button>Return to Homepage</button>
+                        </Link>
+                    </div>
                 </Modal>
 
             </div>

@@ -9,7 +9,10 @@ function SearchPage() {
     const [open, setOpen] = useState(false);
 
     const onOpenModal = () => setOpen(true);
-    const onCloseModal = () => setOpen(false);
+    const onCloseModal = () => {
+        setOpen(false);
+        setSearchName("");
+    }
 
     const [searchName, setSearchName] = useState("");
 
@@ -51,7 +54,7 @@ function SearchPage() {
     const onClick = (e) => {
         handleSubmit(e);
         onOpenModal(e);
-    }
+        }
 
     return (
         <section className="searchPage">
@@ -60,19 +63,27 @@ function SearchPage() {
                 <h3>Forgot which tour you booked? Use the form below!</h3>
 
                 <form action="submit">
-                    <label htmlFor="newName">Name: </label>
-                    <input
-                        type="text"
-                        id="newName"
-                        name="name"
-                        onChange={handleChange}
-                        value={searchName}
-                    />
+                    <div className="formBar">
+                        <label htmlFor="newName">Name: </label>
+                        <input
+                            type="text"
+                            id="newName"
+                            name="name"
+                            onChange={handleChange}
+                            value={searchName}
+                        />
+                    </div>
                     <button onClick={onClick}>Search Tours</button>
                 </form>
 
                 <Modal open={open} onClose={onCloseModal} center>
-                    <h3>{searchResult.name}'s tour to {searchResult.tour} is on {searchResult.date}!</h3>
+                    <div className="modalContent">
+                        {
+                        !searchResult ? <p>{searchName} has not booked a tour!</p>
+                        : searchName === "" ? <p>Please input your name!</p>
+                        : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}!</p>
+                        }
+                    </div>
                 </Modal>
             </div>
         </section>
