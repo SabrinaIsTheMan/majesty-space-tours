@@ -45,8 +45,6 @@ function SearchPage() {
 
         const resultArray = passengers.filter(passengers => passengers.tour === resultObject.tour && passengers.date === resultObject.date);
 
-        console.log(resultArray);
-
         setOtherPassengers(resultArray);
     }
 
@@ -68,7 +66,7 @@ function SearchPage() {
         <section className="searchPage">
             <div className="wrapper">
                 <h2>Search For Your Tour</h2>
-                <h3>Forgot which tour you booked? Use the form below!</h3>
+                <h4>Forgot which tour you booked? Use the form below!</h4>
 
                 <form action="submit">
                     <div className="formBar">
@@ -90,7 +88,7 @@ function SearchPage() {
                         {
                         !searchResult ? <p>{searchName} has not booked a tour!</p>
                         : searchName === "" ? <p>Please input your name!</p>
-                        : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}! There are a total of {otherPassengers.length} passengers on this tour!</p>
+                        : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}! There are a total of {otherPassengers.length} passenger(s) on this tour!</p>
                         }
                     </div>
                 </Modal>
