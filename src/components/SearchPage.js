@@ -11,8 +11,9 @@ function SearchPage() {
     const [searchName, setSearchName] = useState("");
 
     const [passengers, setPassengers] = useState([]);
-    const [otherPassengers, setOtherPassengers] = useState([]);
+
     const [searchResult, setSearchResult] = useState({});
+    const [passengerArray, setPassengerArray] = useState([]);
 
     useEffect (() => {
         const database = getDatabase(firebase);
@@ -32,29 +33,31 @@ function SearchPage() {
         })
     }, []);
 
-    const handleChange = (e) => {
-        setSearchName(e.target.value);
-    }
+    const handleChange = (e) => setSearchName(e.target.value);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const resultObject = passengers.find(passengers => passengers.name === searchName); //.find looks gives you the first result and that's it
+        const resultObject = passengers.findLast(passenger => passenger.name === searchName); //look for most recent booking
 
-        setSearchResult(resultObject);
+        if ( resultObject === undefined) {
+            setSearchResult({}) //this person doesn't have a booking
+        } else {
+            setSearchResult(resultObject);
 
-        const resultArray = passengers.filter(passengers => passengers.tour === resultObject.tour && passengers.date === resultObject.date);
+            const resultArray = passengers.filter(passenger => passenger.date === resultObject.date && passenger.tour === resultObject.tour)
 
-        setOtherPassengers(resultArray);
+            setPassengerArray(resultArray);
+        }
     }
 
-    const onOpenModal = () => {
-        setOpen(true);
-    }
+    const onOpenModal = () => setOpen(true);
 
     const onCloseModal = () => {
         setOpen(false);
         setSearchName("");
+        setSearchResult({});
+        setPassengerArray([]);
     }
 
     const onClick = (e) => {
@@ -85,10 +88,9 @@ function SearchPage() {
 
                 <Modal open={open} onClose={onCloseModal} center>
                     <div className="modalContent">
-                        {
-                        !searchResult ? <p>{searchName} has not booked a tour!</p>
-                        : searchName === "" ? <p>Please input your name!</p>
-                        : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}! There are a total of {otherPassengers.length} passenger(s) on this tour!</p>
+                        { searchName === "" ? <p>Please input your name!</p>
+                        : Object.keys(searchResult).length === 0 ? <p>{searchName} has not booked a tour!</p>
+                        : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}! There is/are {passengerArray.length} total passenger(s) on that tour.</p>
                         }
                     </div>
                 </Modal>
