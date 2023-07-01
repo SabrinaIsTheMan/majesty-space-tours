@@ -1,3 +1,4 @@
+import '../styles/Pages.css';
 import firebase from '../firebase';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { useState, useEffect } from 'react';
@@ -15,7 +16,7 @@ function SearchPage() {
     const [searchResult, setSearchResult] = useState({});
     const [passengerArray, setPassengerArray] = useState([]);
 
-    useEffect (() => {
+    useEffect(() => {
         const database = getDatabase(firebase);
 
         const dbRef = ref(database);
@@ -40,7 +41,7 @@ function SearchPage() {
 
         const resultObject = passengers.findLast(passenger => passenger.name === searchName); //look for most recent booking
 
-        if ( resultObject === undefined) {
+        if (resultObject === undefined) {
             setSearchResult({}) //this person doesn't have a booking
         } else {
             setSearchResult(resultObject);
@@ -88,9 +89,13 @@ function SearchPage() {
 
                 <Modal open={open} onClose={onCloseModal} center>
                     <div className="modalContent">
-                        { searchName === "" ? <p>Please input your name!</p>
-                        : Object.keys(searchResult).length === 0 ? <p>{searchName} has not booked a tour!</p>
-                        : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}! There is/are {passengerArray.length} total passenger(s) on that tour.</p>
+                        {searchName === "" ? <p>Please input your name!</p>
+                            : Object.keys(searchResult).length === 0 ? <p>{searchName} has not booked a tour!</p>
+                                : <>
+                                    <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}!</p>
+                                    <p>Number of passengers on this tour: {passengerArray.length} </p>
+                                </>
+
                         }
                     </div>
                 </Modal>
