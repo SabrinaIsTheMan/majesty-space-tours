@@ -17,6 +17,7 @@
 .react-calendar {
     max-width: 100%;
     line-height: 1.125em;
+    padding-bottom: 20px;
 }
 
 .react-calendar--doubleView {
@@ -118,11 +119,8 @@
     color: black;
 }
 
-.react-calendar__month-view__days__day--weekend {
-    color: #dd361c;
-}
-
 .react-calendar__month-view__days__day--neighboringMonth {
+    background-color: grey;
     color: #FCFCFC;
 }
 
@@ -138,8 +136,8 @@
 }
 
 .react-calendar__tile:disabled {
-    background-color: grey;
     color: #FCFCFC;
+    background-color: grey;
 }
 
 .react-calendar__tile:enabled:hover,
