@@ -6,8 +6,11 @@ import Calendar from 'react-calendar';
 import { differenceInCalendarDays } from 'date-fns';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
+import LoadingOverlay from '@speedy4all/react-loading-overlay';
 
 function Dates({ handleDateClick, selectedDate, location }) {
+
+    const [loading, setLoading] = useState(true);
 
     const [open, setOpen] = useState(false);
     const onOpenModal = () => setOpen(true);
@@ -56,6 +59,8 @@ function Dates({ handleDateClick, selectedDate, location }) {
 
         // async api call for non-asteroids dates (4 weeks worth)
         const getAsteroidData = async () => {
+
+
             try {
                 const res1 = await axios.get(asteroidApiUrl, {
                     params: {
@@ -119,6 +124,8 @@ function Dates({ handleDateClick, selectedDate, location }) {
                 });
 
                 setDangerousDates(convertedArray);
+
+                setLoading(false);
             }
             catch (error) {
                 console.log(error);
@@ -151,20 +158,26 @@ function Dates({ handleDateClick, selectedDate, location }) {
     return (
         <section className="dates">
             <div className="wrapper">
+
+                <h3>{location} Tour Dates</h3>
+                <h4>All available departure dates below are free of asteroid/near-earth objects.</h4>
+
                 <div className="calendarContainer">
-                    <Calendar
-                        calendarType='US'
-                        minDate={today}
-                        maxDate={maxDate}
-                        defaultActiveStartDate={today}
-                        showNeighboringMonth={true}
-                        view="month"
-                        tileDisabled={unavailableDates}
-                        prev2Label={null}
-                        next2Label={null}
-                        value={calendarDate}
-                        onClickDay={onClick}
-                    />
+                    <LoadingOverlay active={loading} spinner>
+                        <Calendar
+                            calendarType='US'
+                            minDate={today}
+                            maxDate={maxDate}
+                            activeStartDate={today}
+                            showNeighboringMonth={true}
+                            view="month"
+                            tileDisabled={unavailableDates}
+                            prev2Label={null}
+                            next2Label={null}
+                            value={calendarDate}
+                            onClickDay={onClick}
+                        />
+                    </LoadingOverlay>
                 </div>
 
                 <Modal open={open} onClose={onCloseModal} center>
