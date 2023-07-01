@@ -1,4 +1,3 @@
-import '../styles/Pages.css';
 import firebase from '../firebase';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { useState, useEffect } from 'react';
@@ -91,11 +90,7 @@ function SearchPage() {
                     <div className="modalContent">
                         { searchName === "" ? <p>Please input your name!</p>
                         : Object.keys(searchResult).length === 0 ? <p>{searchName} has not booked a tour!</p>
-                        : <>
-                        <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}!</p>
-                        <p>Number of passengers on this tour: {passengerArray.length} </p>
-                        </>
-
+                        : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}! There is/are {passengerArray.length} total passenger(s) on that tour.</p>
                         }
                     </div>
                 </Modal>
