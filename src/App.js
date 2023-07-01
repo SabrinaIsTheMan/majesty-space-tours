@@ -14,8 +14,7 @@ import SignUpPage from './components/SignUpPage';
 import SearchPage from './components/SearchPage';
 
 import { Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 
 function App() {
 
@@ -55,7 +54,7 @@ function App() {
   const [count, setCount] = useState(3);
   const [selectedDate, setSelectedDate] = useState("");
 
-  // can only check out 3 locations
+  // can only check out 3 locations - how to make this per hour thing?
   const subtractCount = () => {
     if (count === 0) {
       setCount(0);
