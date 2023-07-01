@@ -1,4 +1,3 @@
-import '../styles/Pages.css';
 import firebase from '../firebase';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { useState, useEffect } from 'react';
