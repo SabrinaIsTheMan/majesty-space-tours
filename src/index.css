@@ -139,6 +139,13 @@ input[type=text] {
   padding: 10px;
 }
 
+.modalContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /* TYPOGRAPHY HERE */
 
 h1 {
