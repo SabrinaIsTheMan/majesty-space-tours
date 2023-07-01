@@ -1,3 +1,4 @@
+import '../styles/Pages.css';
 import firebase from '../firebase';
 import { getDatabase, ref, push } from 'firebase/database';
 import { useState } from 'react';
