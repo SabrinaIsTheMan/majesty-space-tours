@@ -38,8 +38,9 @@ section {
 img{
   max-width: 100%;
   display: block;
-  height: 100%;
+  height: auto;
   border-radius: inherit;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -119,6 +120,24 @@ form {
 input[type=text] {
   font-family: 'Maitree', serif;
   padding: 10px;
+}
+
+.signUpPage, .searchPage {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+    align-items: center;
+}
+
+.customModal {
+  border-radius: 20px;
+  width: 85vw;
+  height: auto;
+}
+
+.modalContent {
+  padding: 10px;
+  text-align: center;
 }
 
 /* TYPOGRAPHY HERE */
