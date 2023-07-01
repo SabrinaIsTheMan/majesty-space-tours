@@ -146,6 +146,10 @@ input[type=text] {
   align-items: center;
 }
 
+.modalContent button{
+  width: 100%;
+}
+
 /* TYPOGRAPHY HERE */
 
 h1 {
