@@ -1,3 +1,4 @@
+import '../styles/Pages.css';
 import firebase from '../firebase';
 import { getDatabase, ref, push } from 'firebase/database';
 import { useState } from 'react';
@@ -49,8 +50,8 @@ function SignUpPage({ tourDate, location }) {
         if (bookingInfo.name === "") {
             onOpenModal(e);
         } else {
-        handleSubmit(e);
-        onOpenModal(e);
+            handleSubmit(e);
+            onOpenModal(e);
         }
     }
 
@@ -78,9 +79,9 @@ function SignUpPage({ tourDate, location }) {
                 <Modal open={open} onClose={onCloseModal} center>
                     <div className="modalContent">
                         {
-                        bookingInfo.name === ""
-                        ? <p>Please input your name!</p>
-                        : <p>Your tour to the {location} on {tourDate} has been booked!</p>
+                            bookingInfo.name === ""
+                                ? <p>Please input your name!</p>
+                                : <p>Your tour to the {location} on {tourDate} has been booked!</p>
                         }
                         <Link to="/">
                             <button>Return to Homepage</button>

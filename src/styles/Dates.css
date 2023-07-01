@@ -76,7 +76,8 @@
 .react-calendar__navigation button:disabled {
     background-color: lightgrey;
 }
-.react-calendar__navigation button:hover{
+
+.react-calendar__navigation button:hover {
     transform: none;
     box-shadow: none;
 }
@@ -179,5 +180,5 @@
 @media (max-width: 768px) {
     .react-calendar__tile {
         height: 10vw;
-        }
+    }
 }
