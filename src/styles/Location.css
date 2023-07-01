@@ -13,6 +13,11 @@
     height: 30vw;
 }
 
+.imgContainer img {
+    height: 100%;
+    object-fit: cover;
+}
+
 .locationInfo {
     text-align: left;
 }
