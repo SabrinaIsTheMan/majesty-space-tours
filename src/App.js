@@ -14,18 +14,11 @@ import SignUpPage from './components/SignUpPage';
 import SearchPage from './components/SearchPage';
 
 import { Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 
 function App() {
 
-  const [active, setActive] = useState(false);
-
-  const toggleMenu = () => {
-    setActive(!active);
-    document.body.style.overflow = `${active ? "" : "hidden" }`;
-  };
-
+  // location info
   const tourArray = [
     {
       locationName: 'Gale Crater',
@@ -48,18 +41,20 @@ function App() {
       description: 'Experience the wonders of the Meridiani Planum, a celestial gem on Mars\' surface. Marvel at the vast plains, where ancient volcanic activity has sculpted the landscape into a surreal masterpiece. Delve into the mysteries of the region, as our expert guides unveil the secrets of Mars\' geological history. Witness the striking iron oxide-rich soil, reminiscent of the Red Planet itself. Engage in extraterrestrial exploration, discovering unique rock formations and relishing the awe-inspiring views of the Martian horizon. Let the tranquility of Meridiani Planum inspire your soul and ignite your imagination on this extraordinary intergalactic escapade.'
     }];
 
+  // hamburger menu
+  const [active, setActive] = useState(false);
+
+  const toggleMenu = () => {
+    setActive(!active);
+    document.body.style.overflow = `${active ? "" : "hidden"}`;
+  };
+
+  // props
   const [selectedTour, setSelectedTour] = useState({});
-  const [tourDates, setTourDates] = useState([]);
   const [count, setCount] = useState(3);
   const [selectedDate, setSelectedDate] = useState("");
 
-  const date = new Date();
-  const currentYear = date.getFullYear();
-  const currentMonth = (date.getMonth() + 1).toString().padStart(2, 0); //this makes sure single digits start with 0 too (e.g. June is 06 instead of 6)
-  const currentDay = date.getDate().toString().padStart(2, 0);
-
-  const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
-
+  // can only check out 3 locations - how to make this per hour thing?
   const subtractCount = () => {
     if (count === 0) {
       setCount(0);
@@ -68,7 +63,7 @@ function App() {
     }
   };
 
-  // handles click on tour location, find object in tourArray that matches, and saves object to selectedTours
+  // handles click on tour location, find object in tourArray that matches, and saves object to selectedTours state
   const handleTourClick = (event) => {
     const tour = event.target.value;
     let obj = tourArray.find(o => o.locationName === tour);
@@ -76,63 +71,34 @@ function App() {
     subtractCount();
   }
 
-  const handleDateClick = (event) => {
-    const tourDate = event.target.value;
-    setSelectedDate(tourDate);
+  // handles click on date and saves it in state
+  const handleDateClick = (value) => {
+
+    const selectedYear = value.getFullYear();
+    const selectedMonth = (value.getMonth() + 1).toString().padStart(2, 0);
+    const selectedDay = value.getDate().toString().padStart(2, 0);
+
+    setSelectedDate(`${selectedYear}-${selectedMonth}-${selectedDay}`);
   }
-
-  // handles click on tour dates, triggers api call for asteroids
-  useEffect (() => {
-      axios('https://api.nasa.gov/neo/rest/v1/feed/', {
-        params: {
-          start_date: `${currentDate}`,
-          api_key: process.env.REACT_APP_API_KEY
-        }
-      })
-      .then((res) => {
-
-        const datesObject = res.data.near_earth_objects;
-        // the payload is an object (the week of dates), where the key:value pairs are date:array of objects (asteroids)
-        // we need to loop through the days and look for asteroids that are dangerous - if there is a dangerous asteroid, we delete the day from the week so that no tours happen
-
-        // we don't want to deal with keys, so we can use a for-of loop that iterates through values
-
-        for (const [date, asteroids] of Object.entries(datesObject)) {
-          // Object.entries returns an array of [key, value] pairs (converts the first layer of the object to an array)
-
-          let dangerous = asteroids.some(asteroid => asteroid.is_potentially_hazardous_asteroid)
-          // .some() checks for anything that contains .is_potentially_hazardous_asteroid===true aka if one true comes up, that whole date object is marked dangerous (we don't need to check every asteroid, just any asteroid)
-
-          if (dangerous) {
-            delete datesObject[date];
-          }
-        }
-
-        const filteredDatesArray = Object.keys(datesObject).sort();
-        // Object.keys returns an array of keys (the dates)
-        // this isn't in order so we need to sort the dates before we set state and map through it in the return
-
-        setTourDates(filteredDatesArray);
-      });
-    }, []); //we want this to be called when the app is mounted (console will give a warning and want us to put currentDate here but that doesn't make sense)
 
   return (
     <div className="App">
-      <Menu toggleMenu ={toggleMenu} active={active}/>
+      <Menu toggleMenu={toggleMenu} active={active} />
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
 
+        {/* this gives these pages the count bubble at the bottom with Outlet in Layout.js */}
         <Route element={<Layout count={count} />}>
           <Route path="/tours" element={<Selection tourArray={tourArray} handleTourClick={handleTourClick} count={count} />} />
 
           <Route path="/tours/:location" element={<Location selectedTour={selectedTour} />} />
 
-          <Route path="/tours/:location/dates" element={<Dates tourDates={tourDates} handleDateClick={handleDateClick} />} />
+          <Route path="/tours/:location/dates" element={<Dates handleDateClick={handleDateClick} selectedDate={selectedDate} location={selectedTour.locationName} />} />
         </Route>
 
-        <Route path="/tours/:location/dates/:date" element={<SignUpPage location={selectedTour.locationName} tourDate={selectedDate}  />} />
+        <Route path="/tours/:location/dates/:date" element={<SignUpPage location={selectedTour.locationName} tourDate={selectedDate} />} />
 
         <Route path="/search" element={<SearchPage />} />
 

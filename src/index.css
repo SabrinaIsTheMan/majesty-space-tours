@@ -5,9 +5,24 @@ html {
   font-size: 125%;
 }
 
-*, *:before, *:after {box-sizing: inherit;}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
-.sr-only {position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
 
 body {
   margin: 0 auto;
@@ -15,7 +30,7 @@ body {
   background-color: #FCFCFC;
 }
 
-.wrapper{
+.wrapper {
   width: 80%;
   max-width: 1080px;
   margin: 0 auto;
@@ -35,22 +50,22 @@ section {
   margin: 10px;
 }
 
-img{
+img {
   max-width: 100%;
   display: block;
-  height: auto;
-  border-radius: inherit;
   height: 100%;
+  border-radius: inherit;
   object-fit: cover;
 }
 
-ul, li{
+ul,
+li {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-a{
+a {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
@@ -59,12 +74,13 @@ a{
   width: 100%;
 }
 
-a:disabled{
+a:disabled {
   pointer-events: none;
   cursor: not-allowed;
 }
 
-button, .button {
+button,
+.button {
   border: none;
   width: fit-content;
   color: #FCFCFC;
@@ -90,7 +106,8 @@ button:disabled {
   background: lightgrey;
 }
 
-button, .button {
+button,
+.button {
   font-family: 'Maitree', serif;
   font-weight: 700;
   text-transform: uppercase;
@@ -122,22 +139,15 @@ input[type=text] {
   padding: 10px;
 }
 
-.signUpPage, .searchPage {
-  height: 60vh;
+.modalContent{
   display: flex;
+  flex-direction: column;
   justify-content: center;
-    align-items: center;
+  align-items: center;
 }
 
-.customModal {
-  border-radius: 20px;
-  width: 85vw;
-  height: auto;
-}
-
-.modalContent {
-  padding: 20px;
-  text-align: center;
+.modalContent button{
+  width: 100%;
 }
 
 /* TYPOGRAPHY HERE */
@@ -156,11 +166,18 @@ h3 {
   font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
 }
 
-p, .modalContent button {
+h4 {
+  font-size: 1rem;
+  padding: 0;
+  margin-top: 0;
+}
+
+p,
+.modalContent button {
   font-size: clamp(0.7rem, 0.5737rem + 0.6316vw, 1rem);
 }
 
-.modalContent p{
+.modalContent p {
   font-size: 1rem;
 }
 
@@ -173,6 +190,6 @@ p, .modalContent button {
 
 @media (max-width: 768px) {
   .wrapper {
-      width: 90%;
+    width: 90%;
   }
 }

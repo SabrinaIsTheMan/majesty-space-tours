@@ -1,32 +1,27 @@
-.location .wrapper{
+.location .wrapper {
     display: grid;
     grid-template-columns: 40% 60%;
     grid-template-rows: 100%;
     place-content: center;
     place-items: center;
-    gap: 80px;
+    gap: 20%;
     padding-top: 5%;
 }
 
-.location .imgContainer{
+.location .imgContainer {
     width: 30vw;
     height: 30vw;
-}
-
-.imgContainer img {
-    height: 100%;
-    object-fit: cover;
 }
 
 .locationInfo {
     text-align: left;
 }
 
-.locationInfo h3{
+.locationInfo h3 {
     text-transform: uppercase;
 }
 
-.locationInfo p{
+.locationInfo p {
     line-height: 1.25rem;
     text-align: justify;
 }
@@ -44,7 +39,7 @@
 
 /* Small devices (portrait phones) */
 @media (max-width: 768px) {
-    .location .wrapper{
+    .location .wrapper {
         gap: 0;
         display: flex;
         flex-direction: column;
@@ -69,7 +64,7 @@
 
 /* Medium devices (landscape phones, tablets) */
 @media (min-width: 768px) and (max-width: 1000px) {
-    .location .wrapper{
+    .location .wrapper {
         grid-template-columns: 30% 70%;
     }
 

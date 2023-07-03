@@ -2,11 +2,14 @@ import '../styles/Location.css';
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+// import LoadingOverlay from '@speedy4all/react-loading-overlay';
 
 function Location({ selectedTour } ) {
 
-    const { location } = useParams();
-    const [ image, setImage ] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const { location } = useParams();
+  const [ image, setImage ] = useState("");
 
   const apiURL = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
 
@@ -21,7 +24,8 @@ function Location({ selectedTour } ) {
                 }
               })
               .then((jsonResult) => {
-                setImage(jsonResult.data.photos[7].img_src)
+                setImage(jsonResult.data.photos[7].img_src);
+                setLoading(false);
               })
               .catch((error)=> {
                 alert('Error!')
@@ -37,7 +41,8 @@ function Location({ selectedTour } ) {
                 }
               })
               .then((jsonResult) => {
-                setImage(jsonResult.data.photos[0].img_src)
+                setImage(jsonResult.data.photos[0].img_src);
+                setLoading(false);
               })
               .catch((error)=> {
                 alert('Error!')
@@ -54,7 +59,8 @@ function Location({ selectedTour } ) {
                 }
               })
               .then((jsonResult) => {
-                setImage(jsonResult.data.photos[22].img_src)
+                setImage(jsonResult.data.photos[22].img_src);
+                setLoading(false);
               })
               .catch((error)=> {
                 alert('Error!')
@@ -71,7 +77,8 @@ function Location({ selectedTour } ) {
                 }
               })
               .then((jsonResult) => {
-                setImage(jsonResult.data.photos[15].img_src)
+                setImage(jsonResult.data.photos[15].img_src);
+                setLoading(false);
               })
               .catch((error)=> {
                 alert('Error!')
@@ -83,9 +90,11 @@ function Location({ selectedTour } ) {
     return (
         <section className="location">
           <div className="wrapper">
-            <div className="imgContainer">
-              <img src={image} alt={selectedTour.altText} />
-            </div>
+            {/* <LoadingOverlay active={loading} spinner>
+              <div className="imgContainer">
+                <img src={image} alt={selectedTour.altText} />
+              </div>
+            </LoadingOverlay> */}
 
             <div className="locationInfo">
               <h3>About {location}</h3>
