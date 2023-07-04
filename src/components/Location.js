@@ -13,8 +13,24 @@ function Location({ selectedTour } ) {
 
   const apiURL = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
 
+//   const getPhoto = async () => {
+//     const apiURL = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
+
+//     const response = await axios.get(`${apiURL}curiosity/photos`, {
+//       params: {
+//         sol: 3780,
+//         camera:'MAST',
+//         page: 1,
+//         api_key: process.env.REACT_APP_API_KEY
+//       }
+//     })
+//   }
+// console.log(getPhoto())
+
     useEffect (() => {
         if(location === 'Gale Crater'){
+
+          
             axios(`${apiURL}curiosity/photos`, {
                 params: {
                 sol: 3780,
@@ -23,14 +39,18 @@ function Location({ selectedTour } ) {
                 api_key: process.env.REACT_APP_API_KEY
                 }
               })
-              .then((jsonResult) => {
+              .then((jsonResult) => {  
                 setImage(jsonResult.data.photos[7].img_src);
                 setLoading(false);
               })
               .catch((error)=> {
                 alert('Error!')
               })
+
+              
         }
+          
+
         if(location === 'Gusev Crater'){
           axios(`${apiURL}spirit/photos`,{
                 params: {
@@ -86,6 +106,8 @@ function Location({ selectedTour } ) {
         }
 
     }, [location])
+
+    
 
     return (
         <section className="location">

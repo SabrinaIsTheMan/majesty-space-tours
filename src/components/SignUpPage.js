@@ -45,14 +45,14 @@
 //         });
 //     }
 
-//     const onClick = (e) => {
-//         if (bookingInfo.name === "") {
-//             onOpenModal(e);
-//         } else {
-//             handleSubmit(e);
-//             onOpenModal(e);
-//         }
-//     }
+    // const onClick = (e) => {
+    //     if (bookingInfo.name === "") {
+    //         onOpenModal(e);
+    //     } else {
+    //     handleSubmit(e);
+    //     onOpenModal(e);
+    //     }
+    // }
 
 //     return (
 //         <section className="signUpPage">
@@ -61,37 +61,35 @@
 
 //                 <form action="submit">
 //                     <div className="formBar">
-//                         <label htmlFor="newName">Name: </label>
-//                         <input
-//                             type="text"
-//                             required
-//                             placeholder="Type your name..."
-//                             id="newName"
-//                             name="name"
-//                             onChange={handleChange}
-//                             value={bookingInfo.name}
-//                         />
-//                     </div>
-//                     <button onClick={onClick}>Book Tour</button>
-//                 </form>
+// //                         <label htmlFor="newName">Name: </label>
+// //                         <input
+// //                             type="text"
+// //                             required
+// //                             placeholder="Type your name..."
+// //                             id="newName"
+// //                             name="name"
+// //                             onChange={handleChange}
+// //                             value={bookingInfo.name}
+// //                         />
+// //                     </div>
+// //                     <button onClick={onClick}>Book Tour</button>
+// //                 </form>
 
 //                 <Modal open={open} onClose={onCloseModal} center>
 //                     <div className="modalContent">
-//                         {
-//                             bookingInfo.name === ""
-//                                 ? <p>Please input your name!</p>
-//                                 : <p>Your tour to the {location} on {tourDate} has been booked!</p>
+//                         {bookingInfo.name === "" ? <p>Please input your name!</p>
+//                         : <p>Your tour to the {location} on {tourDate} has been booked!</p>
 //                         }
 //                         <Link to="/">
 //                             <button>Return to Homepage</button>
 //                         </Link>
 
-//                     </div>
-//                 </Modal>
+// //                     </div>
+// //                 </Modal>
 
-//             </div>
-//         </section>
-//     );
-// }
+// //             </div>
+// //         </section>
+// //     );
+// // }
 
-// export default SignUpPage;
+// // export default SignUpPage;
