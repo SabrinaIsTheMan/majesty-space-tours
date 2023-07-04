@@ -1,9 +1,9 @@
-// import firebase from '../firebase';
-// import { getDatabase, ref, push } from 'firebase/database';
-// import { useState } from 'react';
-// import 'react-responsive-modal/styles.css';
-// import { Modal } from 'react-responsive-modal';
-// import { Link } from 'react-router-dom';
+import firebase from '../firebase';
+import { getDatabase, ref, push } from 'firebase/database';
+import { useState } from 'react';
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
+import { Link } from 'react-router-dom';
 
 // function SignUpPage({ tourDate, location }) {
 
@@ -54,10 +54,10 @@
     //     }
     // }
 
-//     return (
-//         <section className="signUpPage">
-//             <div className="wrapper">
-//                 <h2>Book Your Tour to {location} on {tourDate}</h2>
+    return (
+        <section className="signUpPage">
+            <div className="wrapper">
+                <h2>Book Your Tour to {location} on {tourDate}</h2>
 
 //                 <form action="submit">
 //                     <div className="formBar">

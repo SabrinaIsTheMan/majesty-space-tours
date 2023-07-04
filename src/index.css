@@ -40,6 +40,10 @@ section {
   height: auto;
   width: 100%;
   align-self: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 80px;
 }
 
 .imgContainer {
@@ -115,28 +119,10 @@ button,
 }
 
 .layout {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 99% 1%;
-  height: fit-content;
-  justify-content: center;
-  place-items: center;
-  padding-bottom: 40px;
-}
-
-form {
-  font-family: 'Maitree', serif;
-  height: auto;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-}
-
-input[type=text] {
-  font-family: 'Maitree', serif;
-  padding: 10px;
+  height: 100%;
 }
 
 .modalContent{
@@ -144,10 +130,13 @@ input[type=text] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 20px;
 }
 
 .modalContent button{
   width: 100%;
+  margin: 10px 0;
 }
 
 /* TYPOGRAPHY HERE */
@@ -163,13 +152,12 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  font-size: clamp(1rem, 0.9158rem + 0.4211vw, 1.2rem);
+  text-transform: uppercase;
 }
 
-h4 {
-  font-size: 1rem;
-  padding: 0;
-  margin-top: 0;
+h4{
+  font-size: clamp(0.8rem, 0.7158rem + 0.4211vw, 1rem);
 }
 
 p,

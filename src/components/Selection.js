@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 function Selection({ tourArray, handleTourClick, count } ) {
 
     return (
-        <section className="selection">
-            <h2>Select a destination below to take a virtual tour:</h2>
+        <div className="selection">
+            <h2>Select a destination to take a virtual tour:</h2>
 
             <ul className="tourOptions">
                 { count === 0
@@ -33,7 +33,7 @@ function Selection({ tourArray, handleTourClick, count } ) {
                     )
                 }
             </ul>
-        </section>
+        </div>
     );
 }
 

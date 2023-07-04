@@ -57,8 +57,8 @@
 
 //     useEffect(() => {
 
-//         // async api call for non-asteroids dates (4 weeks worth)
-//         const getAsteroidData = async () => {
+        // async api call for non-asteroids dates (4 weeks worth)
+        const getAsteroidData = async () => {
 
 
 //             try {
@@ -155,12 +155,12 @@
 //         onOpenModal();
 //     }
 
-//     return (
-//         <section className="dates">
-//             <div className="wrapper">
+    return (
+        <section className="dates">
+            <div className="wrapper">
 
-//                 <h3>{location} Tour Dates</h3>
-//                 <h4>All available departure dates below are free of asteroid/near-earth objects.</h4>
+                <h3>{location} Tour Dates</h3>
+                <h4>All available departure dates below are free of asteroid/near-earth objects.</h4>
 
 //                 <div className="calendarContainer">
 //                     <LoadingOverlay active={loading} spinner>
@@ -180,17 +180,17 @@
 //                     </LoadingOverlay>
 //                 </div>
 
-//                 <Modal open={open} onClose={onCloseModal} center>
-//                     <div className="modalContent">
-//                         <p>Book a Tour on {selectedDate} to the {location}?</p>
-//                         <Link to={selectedDate}>
-//                             <button>Book Now</button>
-//                         </Link>
-//                     </div>
-//                 </Modal>
-//             </div>
-//         </section>
-//     );
-// }
+                <Modal open={open} onClose={onCloseModal} center>
+                    <div className="modalContent">
+                        <p>Book a Tour on {selectedDate} to the {location}?</p>
+                        <Link to={selectedDate}>
+                            <button>Book Now</button>
+                        </Link>
+                    </div>
+                </Modal>
+            </div>
+        </section>
+    );
+}
 
 // export default Dates;

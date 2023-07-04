@@ -1,8 +1,8 @@
-// import firebase from '../firebase';
-// import { getDatabase, ref, onValue } from 'firebase/database';
-// import { useState, useEffect } from 'react';
-// import 'react-responsive-modal/styles.css';
-// import { Modal } from 'react-responsive-modal';
+import firebase from '../firebase';
+import { getDatabase, ref, onValue } from 'firebase/database';
+import { useState, useEffect } from 'react';
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
 
 // function SearchPage() {
 
@@ -92,4 +92,42 @@
 //     )
 // }
 
-// // export default SearchPage;
+    return (
+        <section className="searchPage">
+            <div className="wrapper">
+                <h2>Search For Your Tour</h2>
+                <h4>Forgot which tour you booked? Use the form below!</h4>
+
+                <form action="submit">
+                    <div className="formBar">
+                        <label htmlFor="newName">Name: </label>
+                        <input required
+                            type="text"
+                            placeholder="Type your name..."
+                            id="newName"
+                            name="name"
+                            onChange={handleChange}
+                            value={searchName}
+                        />
+                    </div>
+                    <button onClick={onClick}>Search Tours</button>
+                </form>
+
+                <Modal open={open} onClose={onCloseModal} center>
+                    <div className="modalContent">
+                        {searchName === "" ? <p>Please input your name!</p>
+                            : Object.keys(searchResult).length === 0 ? <p>{searchName} has not booked a tour!</p>
+                                : <>
+                                    <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}!</p>
+                                    <p>Number of passengers on this tour: {passengerArray.length} </p>
+                                </>
+
+                        }
+                    </div>
+                </Modal>
+            </div>
+        </section>
+    )
+}
+
+export default SearchPage;
