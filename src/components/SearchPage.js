@@ -4,93 +4,93 @@ import { useState, useEffect } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 
-// function SearchPage() {
+function SearchPage() {
 
-//     const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
-//     const [searchName, setSearchName] = useState("");
+    const [searchName, setSearchName] = useState("");
 
-//     const [passengers, setPassengers] = useState([]);
-//     const [searchResult, setSearchResult] = useState({});
+    const [passengers, setPassengers] = useState([]);
+    const [searchResult, setSearchResult] = useState({});
 
-//     useEffect (() => {
-//         const database = getDatabase(firebase);
+    useEffect (() => {
+        const database = getDatabase(firebase);
 
-//         const dbRef = ref(database);
+        const dbRef = ref(database);
 
-//         onValue(dbRef, (res) => {
+        onValue(dbRef, (res) => {
 
-//             const newState = [];
-//             const data = res.val();
+            const newState = [];
+            const data = res.val();
 
-//             for (let key in data) {
-//                 newState.push(data[key]);
-//             }
+            for (let key in data) {
+                newState.push(data[key]);
+            }
 
-//             setPassengers(newState);
-//         })
-//     }, []);
+            setPassengers(newState);
+        })
+    }, []);
 
-//     const handleChange = (e) => {
-//         setSearchName(e.target.value);
-//     }
+    const handleChange = (e) => {
+        setSearchName(e.target.value);
+    }
 
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-//         const result = passengers.find(passengers => passengers.name === searchName);
+        const result = passengers.find(passengers => passengers.name === searchName);
 
-//         setSearchResult(result);
-//     }
+        setSearchResult(result);
+    }
 
-//     const onOpenModal = () => {
-//         setOpen(true);
-//     }
+    const onOpenModal = () => {
+        setOpen(true);
+    }
 
-//     const onCloseModal = () => {
-//         setOpen(false);
-//         setSearchName("");
-//     }
+    const onCloseModal = () => {
+        setOpen(false);
+        setSearchName("");
+    }
 
-//     const onClick = (e) => {
-//         handleSubmit(e);
-//         onOpenModal(e);
-//     }
+    const onClick = (e) => {
+        handleSubmit(e);
+        onOpenModal(e);
+    }
 
-//     return (
-//         <section className="searchPage">
-//             <div className="wrapper">
-//                 <h2>Search For Your Tour</h2>
-//                 <h3>Forgot which tour you booked? Use the form below!</h3>
+    return (
+        <section className="searchPage">
+            <div className="wrapper">
+                <h2>Search For Your Tour</h2>
+                <h3>Forgot which tour you booked? Use the form below!</h3>
 
-//                 <form action="submit">
-//                     <div className="formBar">
-//                         <label htmlFor="newName">Name: </label>
-//                         <input required
-//                             type="text"
-//                             placeholder="Type your name..."
-//                             id="newName"
-//                             name="name"
-//                             onChange={handleChange}
-//                             value={searchName}
-//                         />
-//                     </div>
-//                     <button onClick={onClick}>Search Tours</button>
-//                 </form>
+                <form action="submit">
+                    <div className="formBar">
+                        <label htmlFor="newName">Name: </label>
+                        <input required
+                            type="text"
+                            placeholder="Type your name..."
+                            id="newName"
+                            name="name"
+                            onChange={handleChange}
+                            value={searchName}
+                        />
+                    </div>
+                    <button onClick={onClick}>Search Tours</button>
+                </form>
 
-//                 <Modal open={open} onClose={onCloseModal} center>
-//                     <div className="modalContent">
-//                         {
-//                         !searchResult ? <p>{searchName} has not booked a tour!</p>
-//                         : searchName === "" ? <p>Please input your name!</p>
-//                         : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}!</p>
-//                         }
-//                     </div>
-//                 </Modal>
-//             </div>
-//         </section>
-//     )
-// }
+                <Modal open={open} onClose={onCloseModal} center>
+                    <div className="modalContent">
+                        {
+                        !searchResult ? <p>{searchName} has not booked a tour!</p>
+                        : searchName === "" ? <p>Please input your name!</p>
+                        : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}!</p>
+                        }
+                    </div>
+                </Modal>
+            </div>
+        </section>
+    )
+}
 
     return (
         <section className="searchPage">
@@ -128,6 +128,6 @@ import { Modal } from 'react-responsive-modal';
             </div>
         </section>
     )
-}
+
 
 export default SearchPage;
