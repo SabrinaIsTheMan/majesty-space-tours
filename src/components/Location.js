@@ -88,7 +88,7 @@ function Location({ selectedTour } ) {
     }, [location])
 
     return (
-        <section className="location">
+        <div className="location">
           <div className="wrapper">
             <LoadingOverlay active={loading} spinner>
               <div className="imgContainer">
@@ -97,7 +97,7 @@ function Location({ selectedTour } ) {
             </LoadingOverlay>
 
             <div className="locationInfo">
-              <h3>About {location}</h3>
+              <h3>{location}</h3>
               <p>{selectedTour.description}</p>
 
               <Link to="dates">
@@ -109,7 +109,7 @@ function Location({ selectedTour } ) {
               </Link>
             </div>
           </div>
-        </section>
+        </div>
     );
 }
 

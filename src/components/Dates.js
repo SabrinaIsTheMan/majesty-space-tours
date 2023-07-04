@@ -60,7 +60,6 @@ function Dates({ handleDateClick, selectedDate, location }) {
         // async api call for non-asteroids dates (4 weeks worth)
         const getAsteroidData = async () => {
 
-
             try {
                 const res1 = await axios.get(asteroidApiUrl, {
                     params: {
@@ -156,11 +155,11 @@ function Dates({ handleDateClick, selectedDate, location }) {
     }
 
     return (
-        <section className="dates">
+        <div className="dates">
             <div className="wrapper">
 
                 <h3>{location} Tour Dates</h3>
-                <h4>All available departure dates below are free of asteroid/near-earth objects.</h4>
+                <h4>All available departure dates are free of asteroid/near-earth objects.</h4>
 
                 <div className="calendarContainer">
                     <LoadingOverlay active={loading} spinner>
@@ -189,7 +188,7 @@ function Dates({ handleDateClick, selectedDate, location }) {
                     </div>
                 </Modal>
             </div>
-        </section>
+        </div>
     );
 }
 

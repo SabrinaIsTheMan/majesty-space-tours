@@ -5,10 +5,10 @@ import Counter from './Counter';
 function Layout({ count }) {
 
     return (
-        <div className="layout">
-            <Outlet />
+        <section className="layout">
             <Counter count={count} />
-        </div>
+            <Outlet />
+        </section>
     )
 };
 

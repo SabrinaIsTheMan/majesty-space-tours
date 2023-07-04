@@ -1,3 +1,4 @@
+import '../styles/Page.css';
 import firebase from '../firebase';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { useState, useEffect } from 'react';
@@ -66,10 +67,10 @@ function SearchPage() {
     }
 
     return (
-        <section className="searchPage">
+        <section className="searchPage page">
             <div className="wrapper">
                 <h2>Search For Your Tour</h2>
-                <h4>Forgot which tour you booked? Use the form below!</h4>
+                <h4>Forgot which tour you booked? Type your name below!</h4>
 
                 <form action="submit">
                     <div className="formBar">
@@ -92,7 +93,8 @@ function SearchPage() {
                             : Object.keys(searchResult).length === 0 ? <p>{searchName} has not booked a tour!</p>
                                 : <>
                                     <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}!</p>
-                                    <p>Number of passengers on this tour: {passengerArray.length} </p>
+                                    <p>Number of passengers on this tour:</p>
+                                    <p><strong>{passengerArray.length}</strong></p>
                                 </>
 
                         }

@@ -1,0 +1,22 @@
+.page{
+    height: 60vh;
+    padding-bottom: 0;
+
+}
+
+form{
+    height: auto;
+    padding: 40px 0;
+    font-family: 'Maitree', serif;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+input[type=text] {
+    font-family: 'Maitree', serif;
+    padding: 10px;
+}
