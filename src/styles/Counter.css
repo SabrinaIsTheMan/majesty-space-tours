@@ -1,6 +1,6 @@
 .counter {
-    align-self: end;
     width: fit-content;
+    align-self: start;
 }
 
 .counterBubble {

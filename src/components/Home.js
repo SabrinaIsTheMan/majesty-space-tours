@@ -7,7 +7,7 @@ function Home() {
             <div className="wrapper">
                 <div className="homeLeft">
                     <h1>Discover the Majesty of Mars</h1>
-                    <h3>Indulge in Opulent Extraterrestrial Experiences</h3>
+                    <h2>Indulge in Opulent Extraterrestrial Experiences</h2>
                     <Link to="/tours">
                         <button>Book A Tour</button>
                     </Link>

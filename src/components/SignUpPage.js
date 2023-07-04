@@ -1,3 +1,4 @@
+import '../styles/Page.css';
 import firebase from '../firebase';
 import { getDatabase, ref, push } from 'firebase/database';
 import { useState } from 'react';
@@ -55,9 +56,9 @@ function SignUpPage({ tourDate, location }) {
     }
 
     return (
-        <section className="signUpPage">
+        <section className="signUpPage page">
             <div className="wrapper">
-                <h2>Book Your Tour to {location} on {tourDate}</h2>
+                <h2>Book your trip to {location} on {tourDate}!</h2>
 
                 <form action="submit">
                     <div className="formBar">
