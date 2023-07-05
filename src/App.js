@@ -66,17 +66,23 @@ function App() {
         console.log(itemStr);
         // if the item doesn't exist, return null
         if (!itemStr) {
-            return null; //no return value associated with this function
+            return; //if it doesn't exist, who cares
         }
+
         const storedItem = JSON.parse(itemStr);
         const now = new Date();
         console.log(now.getTime());
+
         // compare expiry time of stored item with current time
-      if (now.getTime() > storedItem) {
-            // if storedItem is expired, delete item from storage and return null
-            localStorage.removeItem(key);
-            console.log("removed!");
-            return null;
+        if (now.getTime() > storedItem) {
+              // if storedItem is expired, delete item from storage and return null
+              localStorage.removeItem(key);
+              console.log("removed!");
+          }
+        else if (now.getTime() < storedItem) {
+          // if it's not expired, make sure count is 0 so we can continue to restrict access
+          setCount(0);
+          console.log("access is restricted");
         }
     }
 
