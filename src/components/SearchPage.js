@@ -1,19 +1,22 @@
+import '../styles/Page.css';
 import firebase from '../firebase';
-import { getDatabase, ref, onValue } from 'firebase/database';
-import { useState, useEffect } from 'react';
+import { getDatabase, ref, onValue, remove } from 'firebase/database';
+import { useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 
 function SearchPage() {
+
+    const [modalMessage, setModalMessage] = useState("");
 
     const [open, setOpen] = useState(false);
 
     const [searchName, setSearchName] = useState("");
 
     const [passengers, setPassengers] = useState([]);
-    const [searchResult, setSearchResult] = useState({});
+    const [searchResult, setSearchResult] = useState([]);
 
-    useEffect (() => {
+    const databaseCall = () => {
         const database = getDatabase(firebase);
 
         const dbRef = ref(database);
@@ -24,12 +27,19 @@ function SearchPage() {
             const data = res.val();
 
             for (let key in data) {
-                newState.push(data[key]);
+
+                const passengerData = {
+                    key: key,
+                    entry: data[key]
+                }
+
+                newState.push(passengerData);
             }
 
             setPassengers(newState);
         })
-    }, []);
+
+    }; //every time modal closes we check again
 
     const handleChange = (e) => {
         setSearchName(e.target.value);
@@ -38,9 +48,25 @@ function SearchPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const result = passengers.find(passengers => passengers.name === searchName);
+        if (searchName === "") {
+            setModalMessage("Please input a name!");
+            onOpenModal();
+        } else {
 
-        setSearchResult(result);
+            databaseCall();
+
+            const filteredResult = passengers.filter(passenger => passenger.entry.name === searchName);
+
+            if (filteredResult.length === 0) {
+                setModalMessage(`${searchName} has not booked a tour!`);
+                onOpenModal();
+            } else {
+
+                const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date - b.entry.date });
+
+                setSearchResult(sortedResult);
+            }
+        }
     }
 
     const onOpenModal = () => {
@@ -49,12 +75,19 @@ function SearchPage() {
 
     const onCloseModal = () => {
         setOpen(false);
-        setSearchName("");
     }
 
-    const onClick = (e) => {
-        handleSubmit(e);
-        onOpenModal(e);
+    const handleDelete = (entryID) => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `/${entryID}`);
+        remove(dbRef);
+
+        setModalMessage("You've cancelled your tour.");
+        onOpenModal();
+
+        setSearchName("");
+        setPassengers([]);
+        setSearchResult([]);
     }
 
     return (
@@ -75,59 +108,37 @@ function SearchPage() {
                             value={searchName}
                         />
                     </div>
-                    <button onClick={onClick}>Search Tours</button>
+                    <button onClick={handleSubmit}>Search Tours</button>
                 </form>
+
+                <table>
+                    <tr>
+                        <th><h5>Date</h5></th>
+                        <th><h5>Tour</h5></th>
+                        <th><h5>Cancel?</h5></th>
+                    </tr>
+                    {searchResult.map((result) => {
+                        return (
+                            <tr>
+                                <td><p>{result.entry.date}</p></td>
+                                <td><p>{result.entry.tour}</p></td>
+                                <td><button
+                                    className="cancelButton"
+                                    key={result.key}
+                                    onClick={() => {handleDelete(result.key)} }><p>Cancel</p></button></td>
+                            </tr>
+                        )
+                    })}
+                </table>
 
                 <Modal open={open} onClose={onCloseModal} center>
                     <div className="modalContent">
-                        {
-                        !searchResult ? <p>{searchName} has not booked a tour!</p>
-                        : searchName === "" ? <p>Please input your name!</p>
-                        : <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}!</p>
-                        }
+                        <p>{modalMessage}</p>
                     </div>
                 </Modal>
             </div>
         </section>
     )
 }
-
-    return (
-        <section className="searchPage">
-            <div className="wrapper">
-                <h2>Search For Your Tour</h2>
-                <h4>Forgot which tour you booked? Use the form below!</h4>
-
-                <form action="submit">
-                    <div className="formBar">
-                        <label htmlFor="newName">Name: </label>
-                        <input required
-                            type="text"
-                            placeholder="Type your name..."
-                            id="newName"
-                            name="name"
-                            onChange={handleChange}
-                            value={searchName}
-                        />
-                    </div>
-                    <button onClick={onClick}>Search Tours</button>
-                </form>
-
-                <Modal open={open} onClose={onCloseModal} center>
-                    <div className="modalContent">
-                        {searchName === "" ? <p>Please input your name!</p>
-                            : Object.keys(searchResult).length === 0 ? <p>{searchName} has not booked a tour!</p>
-                                : <>
-                                    <p>{searchResult.name}'s tour to the {searchResult.tour} is on {searchResult.date}!</p>
-                                    <p>Number of passengers on this tour: {passengerArray.length} </p>
-                                </>
-
-                        }
-                    </div>
-                </Modal>
-            </div>
-        </section>
-    )
-
 
 export default SearchPage;
