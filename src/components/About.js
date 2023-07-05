@@ -9,7 +9,7 @@ function About() {
                 <div className="profileGrid">
                     <div className="profile">
                         <div className="imgContainer">
-                            <img src="http://place-puppy.com/500x500" alt="Placeholder Puppy" />
+                            <img src="109559504.png" alt="Placeholder Puppy" />
                         </div>
                         <h6 className='button'><a href="https://github.com/mahmkhat4206" target="_blank" rel="noopener noreferrer">About Mahmood</a></h6>
                     </div>
