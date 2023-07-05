@@ -1,7 +1,7 @@
 import '../styles/Page.css';
 import firebase from '../firebase';
 import { getDatabase, ref, onValue, remove } from 'firebase/database';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 
@@ -16,7 +16,7 @@ function SearchPage() {
     const [passengers, setPassengers] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
 
-    const databaseCall = () => {
+    useEffect (() => {
         const database = getDatabase(firebase);
 
         const dbRef = ref(database);
@@ -39,7 +39,7 @@ function SearchPage() {
             setPassengers(newState);
         })
 
-    }; //every time modal closes we check again
+    }, []); //every time modal closes we check again
 
     const handleChange = (e) => {
         setSearchName(e.target.value);
@@ -52,20 +52,23 @@ function SearchPage() {
             setModalMessage("Please input a name!");
             onOpenModal();
         } else {
+            filterSearch();
+        }
+    }
 
-            databaseCall();
+    const filterSearch = () => {
+        const filteredResult = passengers.filter(passenger => passenger.entry.name === searchName);
 
-            const filteredResult = passengers.filter(passenger => passenger.entry.name === searchName);
+        if (filteredResult.length === 0) {
 
-            if (filteredResult.length === 0) {
-                setModalMessage(`${searchName} has not booked a tour!`);
-                onOpenModal();
-            } else {
+            console.log(filteredResult.length);
+            setModalMessage(`${searchName} has not booked a tour!`);
+            onOpenModal();
 
-                const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date - b.entry.date });
+        } else {
 
-                setSearchResult(sortedResult);
-            }
+            const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date - b.entry.date });
+            setSearchResult(sortedResult);
         }
     }
 
