@@ -15,3 +15,5 @@ function Counter({ count }) {
 }
 
 export default Counter;
+
+// ttl = 3600000*24 (1 hour * 24)

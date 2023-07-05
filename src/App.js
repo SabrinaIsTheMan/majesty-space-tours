@@ -14,7 +14,7 @@ import SignUpPage from './components/SignUpPage';
 import SearchPage from './components/SearchPage';
 
 import { Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
@@ -49,29 +49,56 @@ function App() {
     document.body.style.overflow = `${active ? "" : "hidden"}`;
   };
 
-  // props
-  const [selectedTour, setSelectedTour] = useState({});
+  // visit counter
   const [count, setCount] = useState(3);
+
+  function setWithExpiry(key, ttl) {
+    const now = new Date();
+
+    // object that contains expiry time
+    const expiry = now.getTime() + ttl;
+
+    localStorage.setItem(key, JSON.stringify(expiry));
+  }
+
+  function getWithExpiry(key) {
+      const itemStr = localStorage.getItem(key);
+
+      // if the item doesn't exist, return null
+      if (!itemStr) {
+          return; //if it doesn't exist, who cares, stop the function
+      }
+
+      const storedItem = JSON.parse(itemStr);
+      const now = new Date();
+
+      // compare expiry time of stored item with current time
+      if (now.getTime() > storedItem) {
+            // if storedItem is expired, delete item from storage and return null
+            localStorage.removeItem(key);
+        }
+      else if (now.getTime() < storedItem) {
+        // if it's not expired, make sure count is 0 so we can continue to restrict access
+        setCount(0);
+      }
+  }
+
+  // other props
+  const [selectedTour, setSelectedTour] = useState({});
   const [selectedDate, setSelectedDate] = useState("");
 
-  // can only check out 3 locations - how to make this per hour thing?
-  const subtractCount = () => {
-    if (count === 0) {
+  const handleTourClick = (event) => {
+    const tour = event.target.value;
+    let tourObject = tourArray.find(tourItem => tourItem.locationName === tour);
+    setSelectedTour(tourObject);
+    if (count === 1) {
+      setWithExpiry('restrictUntil', (3600000 * 24)); //1 hours worth of milliseconds, timees 24 hours
       setCount(0);
     } else {
       setCount(count - 1);
-    }
-  };
-
-  // handles click on tour location, find object in tourArray that matches, and saves object to selectedTours state
-  const handleTourClick = (event) => {
-    const tour = event.target.value;
-    let obj = tourArray.find(o => o.locationName === tour);
-    setSelectedTour(obj);
-    subtractCount();
+    };
   }
 
-  // handles click on date and saves it in state
   const handleDateClick = (value) => {
 
     const selectedYear = value.getFullYear();
@@ -80,6 +107,10 @@ function App() {
 
     setSelectedDate(`${selectedYear}-${selectedMonth}-${selectedDay}`);
   }
+
+  useEffect(() => {
+    getWithExpiry("restrictUntil");
+  }, []);
 
   return (
     <div className="App">
