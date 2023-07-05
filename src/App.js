@@ -95,7 +95,7 @@ function App() {
     let tourObject = tourArray.find(tourItem => tourItem.locationName === tour);
     setSelectedTour(tourObject);
     if (count === 1) {
-      setWithExpiry('restrictUntil', 60000);
+      setWithExpiry('restrictUntil', 10000);
       setCount(0);
     } else {
       setCount(count - 1);
