@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+    margin-top: 30px;
 }
 
 .homeLeft, .homeRight {
@@ -14,6 +15,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-right: 20px;
 }
 
 .homeRight {

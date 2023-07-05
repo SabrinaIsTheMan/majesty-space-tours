@@ -63,3 +63,14 @@
         grid-template-rows: repeat(4, 25%);
     }
 }
+
+@media (min-width: 1500px) {
+    .profile {
+        width: 500px;
+    }
+    
+    .profileGrid {
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(4, 25%);
+    }
+}
