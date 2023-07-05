@@ -8,7 +8,7 @@ function Selection({ tourArray, handleTourClick, count } ) {
             <h2>Select a destination to take a virtual tour:</h2>
 
             <ul className="tourOptions">
-                { count === 0
+                { (count === 0)
                     ? tourArray.map(({ locationName }) =>
                         <li key={ locationName }>
                             <button
