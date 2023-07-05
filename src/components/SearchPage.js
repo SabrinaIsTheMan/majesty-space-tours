@@ -7,6 +7,8 @@ import { Modal } from 'react-responsive-modal';
 
 function SearchPage() {
 
+    const [modalMessage, setModalMessage] = useState("");
+
     const [open, setOpen] = useState(false);
 
     const [searchName, setSearchName] = useState("");
@@ -47,7 +49,8 @@ function SearchPage() {
         e.preventDefault();
 
         if (searchName === "") {
-            alert("Please input a name!");
+            setModalMessage("Please input a name!");
+            onOpenModal();
         } else {
 
             databaseCall();
@@ -55,7 +58,8 @@ function SearchPage() {
             const filteredResult = passengers.filter(passenger => passenger.entry.name === searchName);
 
             if (filteredResult.length === 0) {
-                alert(`${searchName} has not booked a tour!`);
+                setModalMessage(`${searchName} has not booked a tour!`);
+                onOpenModal();
             } else {
 
                 const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date - b.entry.date });
@@ -74,10 +78,13 @@ function SearchPage() {
     }
 
     const handleDelete = (entryID) => {
-        onOpenModal();
         const database = getDatabase(firebase);
         const dbRef = ref(database, `/${entryID}`);
         remove(dbRef);
+
+        setModalMessage("You've cancelled your tour.");
+        onOpenModal();
+
         setSearchName("");
         setPassengers([]);
         setSearchResult([]);
@@ -126,7 +133,7 @@ function SearchPage() {
 
                 <Modal open={open} onClose={onCloseModal} center>
                     <div className="modalContent">
-                        <p>This tour has been cancelled.</p>
+                        <p>{modalMessage}</p>
                     </div>
                 </Modal>
             </div>
