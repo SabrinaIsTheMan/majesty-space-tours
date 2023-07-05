@@ -61,30 +61,27 @@ function App() {
     localStorage.setItem(key, JSON.stringify(expiry));
   }
 
-    function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key);
-        console.log(itemStr);
-        // if the item doesn't exist, return null
-        if (!itemStr) {
-            return; //if it doesn't exist, who cares
-        }
+  function getWithExpiry(key) {
+      const itemStr = localStorage.getItem(key);
 
-        const storedItem = JSON.parse(itemStr);
-        const now = new Date();
-        console.log(now.getTime());
+      // if the item doesn't exist, return null
+      if (!itemStr) {
+          return; //if it doesn't exist, who cares, stop the function
+      }
 
-        // compare expiry time of stored item with current time
-        if (now.getTime() > storedItem) {
-              // if storedItem is expired, delete item from storage and return null
-              localStorage.removeItem(key);
-              console.log("removed!");
-          }
-        else if (now.getTime() < storedItem) {
-          // if it's not expired, make sure count is 0 so we can continue to restrict access
-          setCount(0);
-          console.log("access is restricted");
+      const storedItem = JSON.parse(itemStr);
+      const now = new Date();
+
+      // compare expiry time of stored item with current time
+      if (now.getTime() > storedItem) {
+            // if storedItem is expired, delete item from storage and return null
+            localStorage.removeItem(key);
         }
-    }
+      else if (now.getTime() < storedItem) {
+        // if it's not expired, make sure count is 0 so we can continue to restrict access
+        setCount(0);
+      }
+  }
 
   // other props
   const [selectedTour, setSelectedTour] = useState({});
@@ -95,7 +92,7 @@ function App() {
     let tourObject = tourArray.find(tourItem => tourItem.locationName === tour);
     setSelectedTour(tourObject);
     if (count === 1) {
-      setWithExpiry('restrictUntil', 10000);
+      setWithExpiry('restrictUntil', (3600000 * 24)); //1 hours worth of milliseconds, timees 24 hours
       setCount(0);
     } else {
       setCount(count - 1);
