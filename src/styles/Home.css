@@ -58,6 +58,12 @@
     .homeLeft,
     .homeRight {
         width: 50%;
+        margin-right: 0;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .homeLeft {
@@ -65,7 +71,7 @@
     }
 
     .img1 {
-        align-self: left;
+        align-self: center;
     }
 
     .img2 {
