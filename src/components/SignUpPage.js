@@ -9,12 +9,17 @@ import { Link } from 'react-router-dom';
 function SignUpPage({ tourDate, location }) {
 
     const [open, setOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
+
+    const [showHomeButton, setShowHomeButton] = useState(false);
 
     const [bookingInfo, setBookingInfo] = useState({
         name: "",
         tour: location,
         date: tourDate
     });
+
+    const Filter = require('bad-words'), filter = new Filter();
 
     const handleChange = (e) => {
 
@@ -28,31 +33,36 @@ function SignUpPage({ tourDate, location }) {
 
         e.preventDefault();
 
-        const database = getDatabase(firebase);
-        const dbRef = ref(database);
+        if (bookingInfo.name === ""){
+            setModalMessage("Please input your name!");
+            onOpenModal();
+        }
+        else if (filter.isProfane(bookingInfo.name)) {
+            setModalMessage("Please watch your language!");
+            onOpenModal();
+        } else {
+            const database = getDatabase(firebase);
+            const dbRef = ref(database);
 
-        push(dbRef, bookingInfo);
+            push(dbRef, bookingInfo);
+
+            setModalMessage(`Your tour to the ${location} on ${tourDate} has been booked!`);
+            setShowHomeButton(true);
+            onOpenModal();
+        }
     }
 
     const onOpenModal = () => setOpen(true);
 
     const onCloseModal = () => {
         setOpen(false);
+        setShowHomeButton(false);
 
         setBookingInfo({
             name: "",
             tour: location,
             date: tourDate
         });
-    }
-
-    const onClick = (e) => {
-        if (bookingInfo.name === "") {
-            onOpenModal(e);
-        } else {
-        handleSubmit(e);
-        onOpenModal(e);
-        }
     }
 
     return (
@@ -73,15 +83,13 @@ function SignUpPage({ tourDate, location }) {
                             value={bookingInfo.name}
                         />
                     </div>
-                    <button onClick={onClick}>Book Tour</button>
+                    <button onClick={handleSubmit}>Book Tour</button>
                 </form>
 
                 <Modal open={open} onClose={onCloseModal} center>
                     <div className="modalContent">
-                        {bookingInfo.name === "" ? <p>Please input your name!</p>
-                        : <p>Your tour to the {location} on {tourDate} has been booked!</p>
-                        }
-                        <Link to="/">
+                        <p>{modalMessage}</p>
+                        <Link to="/" style={{ display: showHomeButton ? 'block' : 'none' }}>
                             <button>Return to Homepage</button>
                         </Link>
                     </div>

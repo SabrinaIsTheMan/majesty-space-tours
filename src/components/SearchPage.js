@@ -7,14 +7,15 @@ import { Modal } from 'react-responsive-modal';
 
 function SearchPage() {
 
-    const [modalMessage, setModalMessage] = useState("");
-
     const [open, setOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
 
     const [searchName, setSearchName] = useState("");
 
     const [passengers, setPassengers] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
+
+    const Filter = require('bad-words'), filter = new Filter();
 
     useEffect(() => {
         const database = getDatabase(firebase);
@@ -42,7 +43,10 @@ function SearchPage() {
         e.preventDefault();
 
         if (searchName === "") {
-            setModalMessage("Please input a name!");
+            setModalMessage("Please input your name!");
+            onOpenModal();
+        } else if (filter.isProfane(searchName)) {
+            setModalMessage("Please watch your language!");
             onOpenModal();
         } else {
             filterSearch();
