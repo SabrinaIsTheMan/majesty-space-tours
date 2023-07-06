@@ -1,8 +1,19 @@
+.home {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .home .wrapper{
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+    width: auto;
+    height: auto;
+    margin-top: 40px;
 }
 
 .homeLeft, .homeRight {
@@ -23,15 +34,24 @@
 }
 
 .img1 {
-    align-self: left;
+    width: 250px;
+    height: 250px;
+    align-self: flex-start;
 }
 .img2 {
+    height: 200px;
+    width: auto;
     align-self: flex-end;
 }
 
 /* Media Queries */
 /* Small devices (portrait phones) */
 @media (max-width: 768px) {
+
+    .home {
+    height: auto;
+    }
+
     .home .wrapper{
         flex-direction: column;
     }

@@ -15,10 +15,10 @@ function Home() {
 
                 <div className="homeRight">
                     <div className="imgContainer img1">
-                        <img src="Image-1.jpg" alt="Image of Curiosity Rover" />
+                        <img src="image1.jpg" alt="Image of Curiosity Rover" />
                     </div>
                     <div className="imgContainer img2">
-                        <img src="Image-2.jpg" alt="Image of Martian Landscape" />
+                        <img src="image2.jpg" alt="Image of Martian Landscape" />
                     </div>
                 </div>
             </div>

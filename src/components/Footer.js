@@ -5,7 +5,7 @@ function Footer() {
     return (
         <footer className="footer">
             <div className="wrapper">
-                <p>Created by <Link to="/about">TEAM MAJESTY</Link> at Juno College</p>
+                <p><a href="https://github.com/JC47-TeamMajesty/majesty-space-tours" target="_blank" rel="noopener noreferrer">Created</a> by <Link to="/about">TEAM MAJESTY</Link> at <a href="https://junocollege.com/" target="_blank" rel="noopener noreferrer">Juno College</a></p>
             </div>
         </footer>
     );

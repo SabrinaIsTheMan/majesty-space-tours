@@ -100,7 +100,7 @@ function SearchPage() {
         <section className="searchPage page">
             <div className="wrapper">
                 <h2>Search For Your Tour</h2>
-                <h3>Forgot which tour you booked? Use the form below!</h3>
+                <h4>Forgot which tour you booked? Use the form below!</h4>
 
                 <form action="submit">
                     <div className="formBar">
