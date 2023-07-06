@@ -8,94 +8,17 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import LoadingOverlay from '@speedy4all/react-loading-overlay';
 
-function Dates({ handleDateClick, selectedDate, location }) {
-
-    const [loading, setLoading] = useState(true);
-
+function Dates({ handleDateClick, selectedDate, location, datesObject, loading }) {
+    
+    const today = new Date()
     const [open, setOpen] = useState(false);
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
-
-    const asteroidApiUrl = "https://api.nasa.gov/neo/rest/v1/feed/";
-
     const [dangerousDates, setDangerousDates] = useState([]);
 
-    // currentDate for asteroid, days 1-7
-    const today = new Date();
-    const todayYear = today.getFullYear();
-    const todayMonth = (today.getMonth() + 1).toString().padStart(2, 0); //this makes sure single digits start with 0 too (e.g. June is 06 instead of 6)
-    const todayDay = today.getDate().toString().padStart(2, 0);
-
-    const currentDate = `${todayYear}-${todayMonth}-${todayDay}`;
-
-    // nextWeek for asteroid, days 7-14
-    const nextWeek = new Date();
-    nextWeek.setDate(nextWeek.getDate() + 7);
-    const nextWeekYear = nextWeek.getFullYear();
-    const nextWeekMonth = (nextWeek.getMonth() + 1).toString().padStart(2, 0);
-    const nextWeekDay = nextWeek.getDate().toString().padStart(2, 0);
-
-    const nextWeekDate = `${nextWeekYear}-${nextWeekMonth}-${nextWeekDay}`;
-
-    // 2 weeks for asteroid, days 14-21
-    const fortnight = new Date();
-    fortnight.setDate(fortnight.getDate() + 14);
-    const fortnightYear = fortnight.getFullYear();
-    const fortnightMonth = (fortnight.getMonth() + 1).toString().padStart(2, 0);
-    const fortnightDay = fortnight.getDate().toString().padStart(2, 0);
-
-    const fortnightDate = `${fortnightYear}-${fortnightMonth}-${fortnightDay}`;
-
-    // lastWeek for asteroid, days 21-28
-    const lastWeek = new Date();
-    lastWeek.setDate(lastWeek.getDate() + 21);
-    const lastWeekYear = lastWeek.getFullYear();
-    const lastWeekMonth = (lastWeek.getMonth() + 1).toString().padStart(2, 0);
-    const lastWeekDay = lastWeek.getDate().toString().padStart(2, 0);
-
-    const lastWeekDate = `${lastWeekYear}-${lastWeekMonth}-${lastWeekDay}`;
-
+   
     useEffect(() => {
-
-        // async api call for non-asteroids dates (4 weeks worth)
-        const getAsteroidData = async () => {
-
-            try {
-                const res1 = await axios.get(asteroidApiUrl, {
-                    params: {
-                        start_date: currentDate,
-                        api_key: process.env.REACT_APP_API_KEY
-                    }
-                })
-
-                const res2 = await axios.get(asteroidApiUrl, {
-                    params: {
-                        start_date: nextWeekDate,
-                        api_key: process.env.REACT_APP_API_KEY
-                    }
-                })
-
-                const res3 = await axios.get(asteroidApiUrl, {
-                    params: {
-                        start_date: fortnightDate,
-                        api_key: process.env.REACT_APP_API_KEY
-                    }
-                })
-
-                const res4 = await axios.get(asteroidApiUrl, {
-                    params: {
-                        start_date: lastWeekDate,
-                        api_key: process.env.REACT_APP_API_KEY
-                    }
-                })
-
-                const datesObject = { //spread syntax to push all elements from a second array into the first one
-                    ...res1.data.near_earth_objects,
-                    ...res2.data.near_earth_objects,
-                    ...res3.data.near_earth_objects,
-                    ...res4.data.near_earth_objects
-                };
-
+    
                 // the api payload is an object (the week of dates) with nested objects, where the key:value pairs are date:array of objects (asteroids)
                 // we need to loop through the days and look for asteroids that are dangerous - if there is a dangerous asteroid, we delete the day from the week so that no tours happen
 
@@ -123,16 +46,7 @@ function Dates({ handleDateClick, selectedDate, location }) {
                 });
 
                 setDangerousDates(convertedArray);
-
-                setLoading(false);
-            }
-            catch (error) {
-                console.log(error);
-            }
-        }
-
-        getAsteroidData();
-
+           
     }, []); //we want this to be called when the component is mounted (console will give a warning and want us to put currentDate here but that doesn't make sense)
 
     // values and props for Calendar
