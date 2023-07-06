@@ -24,16 +24,9 @@ function SearchPage() {
 
             const newState = [];
             const data = res.val();
-            console.log(data);
 
             for (let key in data) {
-
-                const passengerData = {
-                    key: key,
-                    entry: data[key]
-                }
-
-                newState.push(passengerData);
+                newState.push({key: key, entry: data[key]});
             }
 
             setPassengers(newState);
@@ -58,13 +51,22 @@ function SearchPage() {
 
     const filterSearch = () => {
 
-        const passengersCopy = [...passengers];
-
-        const filteredResult = passengersCopy.filter(passenger => passenger.entry.name === searchName);
+        const filteredResult = passengers.filter(passenger => passenger.entry.name === searchName);
 
         if (filteredResult.length === 0) {
-            setModalMessage(`${searchName} has not booked a tour!`);
+            setModalMessage(`There are no booked tours for ${searchName}!`);
             onOpenModal();
+        } else {
+            const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date > b.entry.date });
+            setSearchResult(sortedResult);
+        }
+    }
+
+    const filterNew = () => {
+        const filteredResult = passengers.filter(passenger => passenger.entry.name === searchName);
+
+        if (filteredResult.length === 0) {
+            setSearchResult([]);
         } else {
             const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date > b.entry.date });
             setSearchResult(sortedResult);
@@ -76,6 +78,7 @@ function SearchPage() {
     }
 
     const onCloseModal = () => {
+        filterNew();
         setOpen(false);
     }
 
@@ -116,7 +119,7 @@ function SearchPage() {
                         <th><h5>Tour</h5></th>
                         <th><h5>Cancel?</h5></th>
                     </tr>
-                    {searchResult.map((result) => {
+                    {searchResult.map( (result) => {
                         return (
                             <tr key={result.key}>
                                 <td><p>{result.entry.date}</p></td>
