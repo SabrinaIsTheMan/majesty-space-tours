@@ -1,7 +1,5 @@
 import '../styles/Location.css';
 import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import LoadingOverlay from '@speedy4all/react-loading-overlay';
 
 function Location({ selectedTour, loading } ) {

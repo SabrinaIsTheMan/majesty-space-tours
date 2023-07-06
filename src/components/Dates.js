@@ -1,7 +1,6 @@
 import '../styles/Dates.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
 import Calendar from 'react-calendar';
 import { differenceInCalendarDays } from 'date-fns';
 import 'react-responsive-modal/styles.css';
@@ -9,44 +8,43 @@ import { Modal } from 'react-responsive-modal';
 import LoadingOverlay from '@speedy4all/react-loading-overlay';
 
 function Dates({ handleDateClick, selectedDate, location, datesObject, loading }) {
-    
+
     const today = new Date()
     const [open, setOpen] = useState(false);
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
     const [dangerousDates, setDangerousDates] = useState([]);
 
-   
     useEffect(() => {
-    
-                // the api payload is an object (the week of dates) with nested objects, where the key:value pairs are date:array of objects (asteroids)
-                // we need to loop through the days and look for asteroids that are dangerous - if there is a dangerous asteroid, we delete the day from the week so that no tours happen
 
-                // we don't want to deal with keys, so we can use a for-of loop that iterates through values
+        // the api payload is an object (the week of dates) with nested objects, where the key:value pairs are date:array of objects (asteroids)
+        // we need to loop through the days and look for asteroids that are dangerous - if there is a dangerous asteroid, we delete the day from the week so that no tours happen
 
-                for (const [date, asteroids] of Object.entries(datesObject)) {
-                    // Object.entries returns an array of [key, value] pairs (converts the first layer of the object to an array)
+        // we don't want to deal with keys, so we can use a for-of loop that iterates through values
 
-                    let dangerous = asteroids.some(asteroid => asteroid.is_potentially_hazardous_asteroid)
-                    // .some() checks for anything that contains .is_potentially_hazardous_asteroid===true aka if one true comes up, that whole date object is marked dangerous (we don't need to check every asteroid, just any asteroid)
+        for (const [date, asteroids] of Object.entries(datesObject)) {
+            // Object.entries returns an array of [key, value] pairs (converts the first layer of the object to an array)
 
-                    if (!dangerous) { // delete the dates that are not dangerous (aka safe) - we want an array of dangerous dates for the calendar to disable
-                        delete datesObject[date];
-                    }
-                }
+            let dangerous = asteroids.some(asteroid => asteroid.is_potentially_hazardous_asteroid)
+            // .some() checks for anything that contains .is_potentially_hazardous_asteroid===true aka if one true comes up, that whole date object is marked dangerous (we don't need to check every asteroid, just any asteroid)
 
-                const filteredDatesArray = Object.keys(datesObject).sort();
-                // Object.keys returns an array of keys (the dates)
-                // this isn't in order so we need to sort the dates before we set state and map through it in the return
+            if (!dangerous) { // delete the dates that are not dangerous (aka safe) - we want an array of dangerous dates for the calendar to disable
+                delete datesObject[date];
+            }
+        }
 
-                // convert this back into an array of Date objects using Date constructor (so that calendar can disable them) in tileDisabled
-                const convertedArray = filteredDatesArray.map((date) => {
-                    const newDateObject = new Date(date);
-                    return newDateObject;
-                });
+        const filteredDatesArray = Object.keys(datesObject).sort();
+        // Object.keys returns an array of keys (the dates)
+        // this isn't in order so we need to sort the dates before we set state and map through it in the return
 
-                setDangerousDates(convertedArray);
-           
+        // convert this back into an array of Date objects using Date constructor (so that calendar can disable them) in tileDisabled
+        const convertedArray = filteredDatesArray.map((date) => {
+            const newDateObject = new Date(date);
+            return newDateObject;
+        });
+
+        setDangerousDates(convertedArray);
+
     }, []); //we want this to be called when the component is mounted (console will give a warning and want us to put currentDate here but that doesn't make sense)
 
     // values and props for Calendar
