@@ -56,7 +56,7 @@ function SignUpPage({ tourDate, location }) {
     }
 
     return (
-        <section className="signUpPage">
+        <section className="signUpPage page">
             <div className="wrapper">
                 <h2>Book Your Tour to {location} on {tourDate}</h2>
 

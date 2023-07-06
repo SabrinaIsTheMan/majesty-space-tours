@@ -39,7 +39,7 @@ function SearchPage() {
             setPassengers(newState);
         })
 
-    }, []); //every time modal closes we check again
+    }, [searchResult]); //every time modal closes we check again
 
     const handleChange = (e) => {
         setSearchName(e.target.value);
@@ -67,7 +67,7 @@ function SearchPage() {
 
         } else {
 
-            const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date - b.entry.date });
+            const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date > b.entry.date });
             setSearchResult(sortedResult);
         }
     }
@@ -81,6 +81,7 @@ function SearchPage() {
     }
 
     const handleDelete = (entryID) => {
+
         const database = getDatabase(firebase);
         const dbRef = ref(database, `/${entryID}`);
         remove(dbRef);
@@ -88,13 +89,13 @@ function SearchPage() {
         setModalMessage("You've cancelled your tour.");
         onOpenModal();
 
-        setSearchName("");
         setPassengers([]);
         setSearchResult([]);
+        setSearchName("");
     }
 
     return (
-        <section className="searchPage">
+        <section className="searchPage page">
             <div className="wrapper">
                 <h2>Search For Your Tour</h2>
                 <h3>Forgot which tour you booked? Use the form below!</h3>

@@ -1,10 +1,21 @@
 import '../styles/Location.css';
 import { useParams, Link } from 'react-router-dom';
 import LoadingOverlay from '@speedy4all/react-loading-overlay';
+import { useState, useEffect } from 'react';
 
-function Location({ selectedTour, loading } ) {
+function Location({ selectedTour } ) {
+
+  const [loading, setLoading] = useState(true);
 
   const { location } = useParams();
+
+  useEffect(() => {
+      if (selectedTour.imageUrl === ""){
+        return
+      } else {
+        setLoading(false);
+      }
+  }, [selectedTour.imageUrl]);
 
     return (
         <div className="location">
@@ -16,7 +27,7 @@ function Location({ selectedTour, loading } ) {
             </LoadingOverlay>
 
             <div className="locationInfo">
-              <h3>{location}</h3>
+              <h3>{selectedTour.locationName}</h3>
               <p>{selectedTour.description}</p>
 
               <Link to="dates">
