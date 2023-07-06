@@ -16,15 +16,15 @@ function SearchPage() {
     const [passengers, setPassengers] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
 
-    useEffect (() => {
+    useEffect(() => {
         const database = getDatabase(firebase);
-
         const dbRef = ref(database);
 
         onValue(dbRef, (res) => {
 
             const newState = [];
             const data = res.val();
+            console.log(data);
 
             for (let key in data) {
 
@@ -39,7 +39,7 @@ function SearchPage() {
             setPassengers(newState);
         })
 
-    }, [searchResult]); //every time modal closes we check again
+    }, []); //every time modal closes we check again
 
     const handleChange = (e) => {
         setSearchName(e.target.value);
@@ -57,16 +57,15 @@ function SearchPage() {
     }
 
     const filterSearch = () => {
-        const filteredResult = passengers.filter(passenger => passenger.entry.name === searchName);
+
+        const passengersCopy = [...passengers];
+
+        const filteredResult = passengersCopy.filter(passenger => passenger.entry.name === searchName);
 
         if (filteredResult.length === 0) {
-
-            console.log(filteredResult.length);
             setModalMessage(`${searchName} has not booked a tour!`);
             onOpenModal();
-
         } else {
-
             const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date > b.entry.date });
             setSearchResult(sortedResult);
         }
@@ -80,18 +79,14 @@ function SearchPage() {
         setOpen(false);
     }
 
-    const handleDelete = (entryID) => {
+    const handleDelete = (entryKey) => {
 
         const database = getDatabase(firebase);
-        const dbRef = ref(database, `/${entryID}`);
+        const dbRef = ref(database, `/${entryKey}`);
         remove(dbRef);
 
         setModalMessage("You've cancelled your tour.");
         onOpenModal();
-
-        setPassengers([]);
-        setSearchResult([]);
-        setSearchName("");
     }
 
     return (
@@ -123,16 +118,16 @@ function SearchPage() {
                     </tr>
                     {searchResult.map((result) => {
                         return (
-                            <tr>
+                            <tr key={result.key}>
                                 <td><p>{result.entry.date}</p></td>
                                 <td><p>{result.entry.tour}</p></td>
                                 <td><button
                                     className="cancelButton"
-                                    key={result.key}
-                                    onClick={() => {handleDelete(result.key)} }><p>Cancel</p></button></td>
+                                    onClick={ () => handleDelete(result.key) }><p>Cancel</p>
+                                    </button></td>
                             </tr>
                         )
-                    })}
+                    }) }
                 </table>
 
                 <Modal open={open} onClose={onCloseModal} center>
