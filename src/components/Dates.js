@@ -86,7 +86,6 @@ function Dates({ handleDateClick, selectedDate, location, datesObject }) {
                             calendarType='US'
                             minDate={today}
                             maxDate={maxDate}
-                            activeStartDate={today}
                             showNeighboringMonth={true}
                             view="month"
                             tileDisabled={unavailableDates}

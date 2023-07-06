@@ -72,9 +72,15 @@
     .profile {
         width: 500px;
     }
-    
+
     .profileGrid {
         grid-template-columns: 100%;
         grid-template-rows: repeat(4, 25%);
+    }
+}
+
+@media (max-width: 400px) {
+    .profile .button {
+        padding: 20px 20px;
     }
 }

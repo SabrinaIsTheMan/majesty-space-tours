@@ -157,10 +157,13 @@ h3 {
 }
 
 h4{
+  font-size: clamp(0.9rem, 0.8158rem + 0.4211vw, 1.1rem);
+}
+
+p {
   font-size: clamp(0.8rem, 0.7158rem + 0.4211vw, 1rem);
 }
 
-p,
 .modalContent button {
   font-size: clamp(0.7rem, 0.5737rem + 0.6316vw, 1rem);
 }

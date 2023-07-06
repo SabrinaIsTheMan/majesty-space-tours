@@ -28,8 +28,10 @@ function Location({ selectedTour } ) {
 
             <div className="locationInfo">
               <h3>{selectedTour.locationName}</h3>
-              <p>{selectedTour.description}</p>
+              <p>{selectedTour.description1}</p>
+              <p>{selectedTour.description2}</p>
 
+              <div className="locationPageButtons">
               <Link to="dates">
                 <button type="button" value="Tour Dates">Tour Dates</button>
               </Link>
@@ -37,6 +39,7 @@ function Location({ selectedTour } ) {
               <Link to="/tours">
                 <button type="button" className='backButton'>Back</button>
               </Link>
+              </div>
             </div>
           </div>
         </div>
