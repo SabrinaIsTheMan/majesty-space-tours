@@ -34,6 +34,10 @@ button:disabled {
     .tourOptions button {
         width: 80vw;
     }
+
+    h2 {
+        margin: 30px;
+    }
 }
 
 /* Medium devices (landscape phones, tablets) */
