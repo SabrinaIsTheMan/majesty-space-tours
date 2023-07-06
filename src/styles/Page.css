@@ -1,7 +1,6 @@
 .page{
     height: 60vh;
     padding-bottom: 0;
-
 }
 
 form{
@@ -49,3 +48,5 @@ td {
 .cancelButton p{
     font-size: 0.75rem;
 }
+
+/* profanities search from https://www.npmjs.com/package/bad-words */

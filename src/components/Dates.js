@@ -7,13 +7,14 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import LoadingOverlay from '@speedy4all/react-loading-overlay';
 
-function Dates({ handleDateClick, selectedDate, location, datesObject, loading }) {
+function Dates({ handleDateClick, selectedDate, location, datesObject }) {
 
-    const today = new Date()
+    const today = new Date();
+    const [loading, setLoading] = useState(true);
+    const [dangerousDates, setDangerousDates] = useState([]);
     const [open, setOpen] = useState(false);
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
-    const [dangerousDates, setDangerousDates] = useState([]);
 
     useEffect(() => {
 
@@ -45,7 +46,13 @@ function Dates({ handleDateClick, selectedDate, location, datesObject, loading }
 
         setDangerousDates(convertedArray);
 
-    }, []); //we want this to be called when the component is mounted (console will give a warning and want us to put currentDate here but that doesn't make sense)
+        if (convertedArray.length === 0) {
+            return;
+        } else {
+            setLoading(false);
+        }
+
+    }, [datesObject]); //we want this to be called when the component is mounted (console will give a warning and want us to put currentDate here but that doesn't make sense)
 
     // values and props for Calendar
     const maxDate = new Date();

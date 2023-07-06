@@ -7,18 +7,18 @@ import { Modal } from 'react-responsive-modal';
 
 function SearchPage() {
 
-    const [modalMessage, setModalMessage] = useState("");
-
     const [open, setOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState("");
 
     const [searchName, setSearchName] = useState("");
 
     const [passengers, setPassengers] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
 
-    useEffect (() => {
-        const database = getDatabase(firebase);
+    const Filter = require('bad-words'), filter = new Filter();
 
+    useEffect(() => {
+        const database = getDatabase(firebase);
         const dbRef = ref(database);
 
         onValue(dbRef, (res) => {
@@ -27,13 +27,7 @@ function SearchPage() {
             const data = res.val();
 
             for (let key in data) {
-
-                const passengerData = {
-                    key: key,
-                    entry: data[key]
-                }
-
-                newState.push(passengerData);
+                newState.push({key: key, entry: data[key]});
             }
 
             setPassengers(newState);
@@ -49,7 +43,10 @@ function SearchPage() {
         e.preventDefault();
 
         if (searchName === "") {
-            setModalMessage("Please input a name!");
+            setModalMessage("Please input your name!");
+            onOpenModal();
+        } else if (filter.isProfane(searchName)) {
+            setModalMessage("Please watch your language!");
             onOpenModal();
         } else {
             filterSearch();
@@ -57,17 +54,25 @@ function SearchPage() {
     }
 
     const filterSearch = () => {
+
         const filteredResult = passengers.filter(passenger => passenger.entry.name === searchName);
 
         if (filteredResult.length === 0) {
-
-            console.log(filteredResult.length);
-            setModalMessage(`${searchName} has not booked a tour!`);
+            setModalMessage(`There are no booked tours for ${searchName}!`);
             onOpenModal();
-
         } else {
+            const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date > b.entry.date });
+            setSearchResult(sortedResult);
+        }
+    }
 
-            const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date - b.entry.date });
+    const filterNew = () => {
+        const filteredResult = passengers.filter(passenger => passenger.entry.name === searchName);
+
+        if (filteredResult.length === 0) {
+            setSearchResult([]);
+        } else {
+            const sortedResult = filteredResult.sort(function (a, b) { return a.entry.date > b.entry.date });
             setSearchResult(sortedResult);
         }
     }
@@ -77,24 +82,22 @@ function SearchPage() {
     }
 
     const onCloseModal = () => {
+        filterNew();
         setOpen(false);
     }
 
-    const handleDelete = (entryID) => {
+    const handleDelete = (entryKey) => {
+
         const database = getDatabase(firebase);
-        const dbRef = ref(database, `/${entryID}`);
+        const dbRef = ref(database, `/${entryKey}`);
         remove(dbRef);
 
         setModalMessage("You've cancelled your tour.");
         onOpenModal();
-
-        setSearchName("");
-        setPassengers([]);
-        setSearchResult([]);
     }
 
     return (
-        <section className="searchPage">
+        <section className="searchPage page">
             <div className="wrapper">
                 <h2>Search For Your Tour</h2>
                 <h3>Forgot which tour you booked? Use the form below!</h3>
@@ -120,18 +123,18 @@ function SearchPage() {
                         <th><h5>Tour</h5></th>
                         <th><h5>Cancel?</h5></th>
                     </tr>
-                    {searchResult.map((result) => {
+                    {searchResult.map( (result) => {
                         return (
-                            <tr>
+                            <tr key={result.key}>
                                 <td><p>{result.entry.date}</p></td>
                                 <td><p>{result.entry.tour}</p></td>
                                 <td><button
                                     className="cancelButton"
-                                    key={result.key}
-                                    onClick={() => {handleDelete(result.key)} }><p>Cancel</p></button></td>
+                                    onClick={ () => handleDelete(result.key) }><p>Cancel</p>
+                                    </button></td>
                             </tr>
                         )
-                    })}
+                    }) }
                 </table>
 
                 <Modal open={open} onClose={onCloseModal} center>

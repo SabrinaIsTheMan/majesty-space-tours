@@ -31,7 +31,6 @@ const asteroidApiUrl = "https://api.nasa.gov/neo/rest/v1/feed/";
 const [selectedTour, setSelectedTour] = useState({});
 const [selectedDate, setSelectedDate] = useState("");
 const [datesObject, setDatesObject] = useState({});
-const [loading, setLoading] = useState(true);
 
 // hamburger menu
 const [active, setActive] = useState(false);
@@ -249,7 +248,7 @@ useEffect(() => {
         ...res4.data.near_earth_objects
       };
 
-      setDatesObject(resultObject)
+      setDatesObject(resultObject);
       }
       catch (error) {
         console.log(error);
@@ -258,7 +257,6 @@ useEffect(() => {
 
     getAsteroidData();
     fetchImageData();
-    setLoading(false);
 
 }, []);
 
@@ -274,9 +272,9 @@ return (
       <Route element={<Layout count={count} />}>
         <Route path="/tours" element={<Selection tourArray={tourArray} handleTourClick={handleTourClick} count={count} />} />
 
-        <Route path="/tours/:location" element={<Location selectedTour={selectedTour} loading={loading} />} />
+        <Route path="/tours/:location" element={<Location selectedTour={selectedTour} />} />
 
-        <Route path="/tours/:location/dates" element={<Dates handleDateClick={handleDateClick} selectedDate={selectedDate} location={selectedTour.locationName} datesObject={datesObject} loading={loading} />} />
+        <Route path="/tours/:location/dates" element={<Dates handleDateClick={handleDateClick} selectedDate={selectedDate} location={selectedTour.locationName} datesObject={datesObject} />} />
       </Route>
 
       <Route path="/tours/:location/dates/:date" element={<SignUpPage location={selectedTour.locationName} tourDate={selectedDate} />} />
