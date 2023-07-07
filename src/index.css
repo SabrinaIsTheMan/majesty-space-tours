@@ -28,6 +28,8 @@ body {
   margin: 0 auto;
   font-family: 'Maitree', serif;
   background-color: #FCFCFC;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .wrapper {
