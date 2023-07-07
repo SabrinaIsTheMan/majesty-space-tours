@@ -70,14 +70,12 @@ const tourArray = [
   }];
 
 const toggleMenu = () => {
-  setActive(!active);
-
-  if (active) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "";
-  };
-}
+  // only run this function if hamburger menu is active aka screen is 768px or less
+  if ((window.innerWidth || document.documentElement.clientWidth) <= 768) {
+    setActive(!active);
+    document.body.style.overflow = `${active ? "" : "hidden"}`;
+  }
+};
 
 function setWithExpiry(key, ttl) {
   const now = new Date();
