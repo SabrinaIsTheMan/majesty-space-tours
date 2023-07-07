@@ -71,8 +71,13 @@ const tourArray = [
 
 const toggleMenu = () => {
   setActive(!active);
-  document.body.style.overflow = `${active ? "" : "hidden"}`;
-};
+
+  if (active) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  };
+}
 
 function setWithExpiry(key, ttl) {
   const now = new Date();
