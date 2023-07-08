@@ -118,23 +118,25 @@ function SearchPage() {
                 </form>
 
                 <table>
-                    <tr>
-                        <th><h5>Date</h5></th>
-                        <th><h5>Tour</h5></th>
-                        <th><h5>Cancel?</h5></th>
-                    </tr>
-                    {searchResult.map( (result) => {
-                        return (
-                            <tr key={result.key}>
-                                <td><p>{result.entry.date}</p></td>
-                                <td><p>{result.entry.tour}</p></td>
-                                <td><button
-                                    className="cancelButton"
-                                    onClick={ () => handleDelete(result.key) }><p>Cancel</p>
-                                    </button></td>
-                            </tr>
-                        )
-                    }) }
+                    <tbody>
+                        <tr>
+                            <th><h5>Date</h5></th>
+                            <th><h5>Tour</h5></th>
+                            <th><h5>Cancel?</h5></th>
+                        </tr>
+                        {searchResult.map( (result) => {
+                            return (
+                                <tr key={result.key}>
+                                    <td><p>{result.entry.date}</p></td>
+                                    <td><p>{result.entry.tour}</p></td>
+                                    <td><button
+                                        className="cancelButton"
+                                        onClick={ () => handleDelete(result.key) }><p>Cancel</p>
+                                        </button></td>
+                                </tr>
+                            )
+                        }) }
+                    </tbody>
                 </table>
 
                 <Modal open={open} onClose={onCloseModal} center>
