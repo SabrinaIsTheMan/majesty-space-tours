@@ -70,7 +70,7 @@ function SignUpPage({ tourDate, location }) {
             <div className="wrapper">
                 <h2>Book Your Tour to {location} on {tourDate}</h2>
 
-                <form action="submit">
+                <form action="submit" onSubmit={handleSubmit}>
                     <div className="formBar">
                         <label htmlFor="newName">Name: </label>
                         <input
@@ -83,7 +83,7 @@ function SignUpPage({ tourDate, location }) {
                             value={bookingInfo.name}
                         />
                     </div>
-                    <button onClick={handleSubmit}>Book Tour</button>
+                    <button type='submit'>Book Tour</button>
                 </form>
 
                 <Modal open={open} onClose={onCloseModal} center>

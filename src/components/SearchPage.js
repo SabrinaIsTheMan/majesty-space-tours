@@ -102,7 +102,7 @@ function SearchPage() {
                 <h2>Search For Your Tour</h2>
                 <h4>Forgot which tour you booked? Use the form below!</h4>
 
-                <form action="submit">
+                <form action="submit" onSubmit={handleSubmit}>
                     <div className="formBar">
                         <label htmlFor="newName">Name: </label>
                         <input required
@@ -114,7 +114,7 @@ function SearchPage() {
                             value={searchName}
                         />
                     </div>
-                    <button onClick={handleSubmit}>Search Tours</button>
+                    <button type='submit'>Search Tours</button>
                 </form>
 
                 <table>
