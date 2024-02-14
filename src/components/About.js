@@ -6,14 +6,7 @@ function About() {
             <div className="wrapper">
                 <h2>About Team Majesty</h2>
 
-                <div className="profileGrid">
-                    <div className="profile">
-                        <div className="imgContainer">
-                            <img src="avatarMahmood.png" alt="Mahmood's Icon" />
-                        </div>
-                        <h6 className='button'><a href="https://github.com/mahmkhat4206" target="_blank" rel="noopener noreferrer">Mahmood</a></h6>
-                    </div>
-
+                <div className="profileFlex">
                     <div className="profile">
                         <div className="imgContainer">
                             <img src="avatarJulia.png" alt="Julia's Icon" />
