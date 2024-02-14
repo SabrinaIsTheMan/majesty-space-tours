@@ -1,0 +1,59 @@
+.selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.tourOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+    align-items: center;
+}
+
+.tourOptions button {
+    width: 40vw;
+}
+
+button:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    background: lightgrey;
+}
+
+/* MediaQueries.css */
+/* Small devices (portrait phones) */
+@media (max-width: 768px) {
+    .tourOptions {
+        margin: 10px 0;
+    }
+
+    .tourOptions button {
+        width: 80vw;
+    }
+
+    h2 {
+        margin: 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    .selection button {
+        padding: 20px 20px;
+    }
+}
+
+/* Medium devices (landscape phones, tablets) */
+@media (min-width: 768px) and (max-width: 1000px) {
+    .tourOptions {
+        margin: 15px 0;
+    }
+
+    .tourOptions button {
+        width: 60vw;
+    }
+}
+

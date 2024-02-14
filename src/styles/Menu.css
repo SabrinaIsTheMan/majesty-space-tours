@@ -1,0 +1,131 @@
+.menu {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+    padding: 0 20px;
+}
+
+.brand {
+    width: 40vw;
+}
+
+.brandName {
+    color: #105bd8;
+    font-size: 1.25rem;
+}
+
+.brandIcon,
+.menu a:hover,
+.menu a:focus,
+.footer a:hover,
+.footer a:focus {
+    color: #dd361c;
+}
+
+.menuBar, .menuNav, .navList {
+    display: flex;
+    flex-direction: row;
+}
+
+.menuBar {
+    font-weight: 700;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menuNav {
+    width: 60vw;
+}
+
+.navList {
+    width: 90%;
+    justify-content: right;
+    gap: 40px;
+    text-transform: uppercase;
+}
+
+.hamburger, .bar {
+    display: none;
+}
+
+@media(max-width:768px) {
+
+    .brand{
+        width: 100%;
+    }
+
+    .brandName{
+        text-align: left;
+    }
+
+    .bar {
+        display: block;
+        width: 40px;
+        height: 5px;
+        margin: 5px auto;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        background-color: #105bd8;
+    }
+
+    .hamburger {
+        display: block;
+        z-index: 30;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(5px) rotate(-45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-15px) rotate(45deg);
+    }
+
+    .navList {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .navList li p{
+        font-size: 125%;
+    }
+
+    .menuNav {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        gap: 0;
+        background-color: #f4e6e8;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: 0.5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 20;
+    }
+
+    .menuNav.active{
+        left: 0;
+    }
+}
+
+@media(max-width: 380px) {
+    .brand {
+        width: 200px;
+    }
+}
+
+/* how to disable scroll when hamburger menu is open
+    https://stackoverflow.com/questions/39962757/prevent-scrolling-using-css-on-react-rendered-components */

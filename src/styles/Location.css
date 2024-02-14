@@ -1,0 +1,91 @@
+.location .wrapper {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 100%;
+    place-content: center;
+    place-items: center;
+    gap: 20%;
+    height: 100%;
+}
+
+.location .imgContainer {
+    width: 30vw;
+    height: 30vw;
+}
+
+.locationPageButtons{
+    width: 100%;
+}
+
+.locationInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.locationInfo h3 {
+    text-align: center;
+}
+
+.locationInfo p {
+    line-height: 1.25rem;
+    text-align: left;
+}
+
+.locationInfo button {
+    margin: 10px;
+}
+
+.backButton {
+    background: #f4e6e8;
+    color: black;
+}
+
+/* MediaQueries.css */
+
+/* Small devices (portrait phones) */
+@media (max-width: 768px) {
+    .location .wrapper {
+        gap: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .location .imgContainer {
+        width: 250px;
+        height: 250px;
+    }
+
+    .locationInfo {
+        width: 80%;
+        text-align: center;
+    }
+
+    .locationInfo p {
+        text-align: center;
+    }
+
+    .locationInfo button {
+        margin: 5px;
+    }
+}
+
+/* Medium devices (landscape phones, tablets) */
+@media (min-width: 768px) and (max-width: 1000px) {
+    .location .wrapper {
+        grid-template-columns: 30% 70%;
+        gap: 15%;
+    }
+
+    .locationInfo p {
+        line-height: 1.25rem;
+        text-align: left;
+    }
+
+    .locationInfo button {
+        margin: 10px;
+    }
+}

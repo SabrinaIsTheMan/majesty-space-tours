@@ -1,0 +1,52 @@
+.page{
+    height: auto;
+    padding-bottom: 80px;
+}
+
+form{
+    height: auto;
+    padding: 40px 0;
+    font-family: 'Maitree', serif;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+input[type=text] {
+    font-family: 'Maitree', serif;
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    border: none;
+}
+
+th {
+    background-color: #f4e6e8;
+    border-bottom: #dd361c 5px solid;
+    text-transform: uppercase;
+}
+
+th h5{
+    margin: 10px;
+}
+
+td {
+    border-bottom: 1px solid #ddd;
+}
+
+.cancelButton{
+    padding: 0 10px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.cancelButton p{
+    font-size: 0.75rem;
+}
+
+/* profanities search from https://www.npmjs.com/package/bad-words */
