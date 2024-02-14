@@ -25,7 +25,7 @@ const [jezeroImage, setJezeroImage] = useState('');
 const [meridianiImage, setMeridianiImage] = useState('');
 
 const imageApiURL = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
-const asteroidApiUrl = "https://api.nasa.gov/neo/rest/v1/feed/";
+const asteroidApiUrl = "https://api.nasa.gov/neo/rest/v1/feed";
 
 // other props
 const [selectedTour, setSelectedTour] = useState({});
