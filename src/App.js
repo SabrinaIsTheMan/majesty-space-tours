@@ -140,7 +140,7 @@ useEffect(() => {
       sol: 3780,
       camera:'MAST',
       page: 1,
-      api_key: process.env.REACT_APP_IMAGE_API_KEY
+      api_key: process.env.REACT_APP_NASA_API_KEY
       }
     })
 
@@ -149,7 +149,7 @@ useEffect(() => {
       sol: 1274,
       camera:'PANCAM',
       page: 1,
-      api_key: process.env.REACT_APP_IMAGE_API_KEY
+      api_key: process.env.REACT_APP_NASA_API_KEY
       }
     })
 
@@ -158,7 +158,7 @@ useEffect(() => {
       sol: 420,
       camera:'NAVCAM_RIGHT',
       page: 1,
-      api_key: process.env.REACT_APP_IMAGE_API_KEY
+      api_key: process.env.REACT_APP_NASA_API_KEY
       }
     })
 
@@ -167,7 +167,7 @@ useEffect(() => {
       sol: 4558,
       camera:'PANCAM',
       page: 1,
-      api_key: process.env.REACT_APP_IMAGE_API_KEY
+      api_key: process.env.REACT_APP_NASA_API_KEY
       }
     })
 
@@ -223,28 +223,28 @@ useEffect(() => {
       const res1 = await axios.get(asteroidApiUrl, {
         params: {
           start_date: currentDate,
-          api_key: process.env.REACT_APP_ASTEROID_API_KEY
+          api_key: process.env.REACT_APP_NASA_API_KEY
         }
       })
 
       const res2 = await axios.get(asteroidApiUrl, {
         params: {
           start_date: nextWeekDate,
-          api_key: process.env.REACT_APP_ASTEROID_API_KEY
+          api_key: process.env.REACT_APP_NASA_API_KEY
         }
       })
 
       const res3 = await axios.get(asteroidApiUrl, {
         params: {
           start_date: fortnightDate,
-          api_key: process.env.REACT_APP_ASTEROID_API_KEY
+          api_key: process.env.REACT_APP_NASA_API_KEY
         }
       })
 
       const res4 = await axios.get(asteroidApiUrl, {
         params: {
           start_date: lastWeekDate,
-          api_key: process.env.REACT_APP_ASTEROID_API_KEY
+          api_key: process.env.REACT_APP_NASA_API_KEY
         }
       })
 
